@@ -1,0 +1,22 @@
+# JetBrains IDE (PhpStorm)
+.idea/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Editor/temp
+*~
+*.swp
+*.bak
+
+# Environment & secrets
+.env
+.env.local
+
+# Logs
+*.log
+
+# Claude
+.claude
+CLAUDE.md
