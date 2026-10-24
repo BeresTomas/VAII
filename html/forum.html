@@ -38,13 +38,9 @@
 
     <!-- Hlavicka kategorie v samostatnom boxe, oddelena od zvysku stranky -->
     <section class="card category-header">
-      <div class="page-head">
-        <div>
-          <h1>Voľná debata</h1>
-          <p class="category-meta">9 tém · 120 príspevkov</p>
-        </div>
-        <!-- Moderator menu je skryte, lebo pouzivatel nie je prihlaseny -->
-      </div>
+      <!-- Moderator menu by bolo tu napravo, ale je skryte (pouzivatel nie je prihlaseny) -->
+      <h1>Voľná debata</h1>
+      <p class="category-meta">9 tém · 120 príspevkov</p>
 
       <p class="category-desc">
         Priestor na voľnú diskusiu o všetkom okolo včiel a včelárenia – skúsenosti,
@@ -62,33 +58,35 @@
     <!-- Podfora - prekliky na hlbsie zanorene kategorie -->
     <section class="card section-box">
       <h2 class="section-title">Fórum</h2>
-      <table class="forum-table">
-        <thead>
-          <tr>
-            <th>Fórum</th>
-            <th class="count">Témy</th>
-            <th class="count">Príspevky</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>
-              <a href="#">Slovenský Zväz Včelárov</a>
-              <div class="muted">Oficiálne oznamy a diskusie zväzu</div>
-            </td>
-            <td class="count"><span class="badge">4</span></td>
-            <td class="count"><span class="badge">42</span></td>
-          </tr>
-          <tr>
-            <td>
-              <a href="#">Tipy a triky</a>
-              <div class="muted">Praktické rady od skúsených včelárov</div>
-            </td>
-            <td class="count"><span class="badge">5</span></td>
-            <td class="count"><span class="badge">78</span></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="section-body">
+        <table class="forum-table">
+          <thead>
+            <tr>
+              <th>Fórum</th>
+              <th class="count">Témy</th>
+              <th class="count">Príspevky</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <a href="#">Slovenský Zväz Včelárov</a>
+                <div class="muted">Oficiálne oznamy a diskusie zväzu</div>
+              </td>
+              <td class="count"><span class="badge">4</span></td>
+              <td class="count"><span class="badge">42</span></td>
+            </tr>
+            <tr>
+              <td>
+                <a href="#">Tipy a triky</a>
+                <div class="muted">Praktické rady od skúsených včelárov</div>
+              </td>
+              <td class="count"><span class="badge">5</span></td>
+              <td class="count"><span class="badge">78</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
     <!-- Nastroje nad temami: pridanie novej temy + zoradenie -->
@@ -104,74 +102,76 @@
     <!-- Tabulka tem -->
     <section class="card section-box">
       <h2 class="section-title">Témy</h2>
-      <table class="topics-table">
-        <thead>
-          <tr>
-            <th>Autor</th>
-            <th>Téma</th>
-            <th class="count">Odpovede</th>
-            <th>Posledná odpoveď</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="author">
-              <img src="img/logo.svg" alt="Avatar" width="32" height="32" class="avatar">
-              <span>Jožo</span>
-            </td>
-            <td>
-              <a href="#">Primiešavate aj vy štipku soli do sirupu?</a>
-              <div class="muted">Pridané 20. 10. 2026</div>
-            </td>
-            <td class="count"><span class="badge">1</span></td>
-            <td class="last-reply">
-              <a href="#" class="last-reply-link">
-                <img src="img/logo.svg" alt="Avatar" width="24" height="24" class="avatar">
-                <span>od Anka</span>
-              </a>
-              <div class="muted">21. 10. 2026</div>
-            </td>
-          </tr>
-          <tr>
-            <td class="author">
-              <img src="img/logo.svg" alt="Avatar" width="32" height="32" class="avatar">
-              <span>Fero</span>
-            </td>
-            <td>
-              <a href="#">Som zlý človek, ak nemám rád včely?</a>
-              <div class="muted">Pridané 15. 10. 2026</div>
-            </td>
-            <td class="count"><span class="badge">12</span></td>
-            <td class="last-reply">
-              <a href="#" class="last-reply-link">
-                <img src="img/logo.svg" alt="Avatar" width="24" height="24" class="avatar">
-                <span>od Jožo</span>
-              </a>
-              <div class="muted">23. 10. 2026</div>
-            </td>
-          </tr>
-          <tr>
-            <td class="author">
-              <img src="img/logo.svg" alt="Avatar" width="32" height="32" class="avatar">
-              <span>Anka</span>
-            </td>
-            <td>
-              <a href="#">Odporučíte spoľahlivý medomet?</a>
-              <div class="muted">Pridané 24. 10. 2026</div>
-            </td>
-            <td class="count"><span class="badge">0</span></td>
-            <!-- Ziadna odpoved -> posledna odpoved sa nezobrazuje -->
-            <td class="last-reply"></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="section-body">
+        <table class="topics-table">
+          <thead>
+            <tr>
+              <th>Autor</th>
+              <th>Téma</th>
+              <th class="count">Odpovede</th>
+              <th>Posledná odpoveď</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="author">
+                <img src="img/logo.svg" alt="Avatar" width="32" height="32" class="avatar">
+                <span>Jožo</span>
+              </td>
+              <td>
+                <a href="#">Primiešavate aj vy štipku soli do sirupu?</a>
+                <div class="muted">Pridané 20. 10. 2026</div>
+              </td>
+              <td class="count"><span class="badge">1</span></td>
+              <td class="last-reply">
+                <a href="#" class="last-reply-link">
+                  <img src="img/logo.svg" alt="Avatar" width="24" height="24" class="avatar">
+                  <span>od Anka</span>
+                </a>
+                <div class="muted">21. 10. 2026</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="author">
+                <img src="img/logo.svg" alt="Avatar" width="32" height="32" class="avatar">
+                <span>Fero</span>
+              </td>
+              <td>
+                <a href="#">Som zlý človek, ak nemám rád včely?</a>
+                <div class="muted">Pridané 15. 10. 2026</div>
+              </td>
+              <td class="count"><span class="badge">12</span></td>
+              <td class="last-reply">
+                <a href="#" class="last-reply-link">
+                  <img src="img/logo.svg" alt="Avatar" width="24" height="24" class="avatar">
+                  <span>od Jožo</span>
+                </a>
+                <div class="muted">23. 10. 2026</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="author">
+                <img src="img/logo.svg" alt="Avatar" width="32" height="32" class="avatar">
+                <span>Anka</span>
+              </td>
+              <td>
+                <a href="#">Odporučíte spoľahlivý medomet?</a>
+                <div class="muted">Pridané 24. 10. 2026</div>
+              </td>
+              <td class="count"><span class="badge">0</span></td>
+              <!-- Ziadna odpoved -> posledna odpoved sa nezobrazuje -->
+              <td class="last-reply"></td>
+            </tr>
+          </tbody>
+        </table>
 
-      <!-- Strankovanie -->
-      <nav class="pagination">
-        <a href="#" class="active">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-      </nav>
+        <!-- Strankovanie -->
+        <nav class="pagination">
+          <a href="#" class="active">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+        </nav>
+      </div>
     </section>
 
     <!-- Spodna info lista -->

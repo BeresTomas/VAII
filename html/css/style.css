@@ -177,6 +177,7 @@ a:hover {
 
 .search-form input {
   flex: 1;
+  /* min-width: 0 dovoli vstupu zmensit sa, aby na uzkych obrazovkach nepretiekol */
   min-width: 0;
 }
 
@@ -223,15 +224,8 @@ input[type="search"] {
   color: #666;
 }
 
-.page-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.page-head h1 {
+/* Nadpis kategorie - zrusenie velkeho predvoleneho okraja h1 */
+.category-header h1 {
   margin: 0;
   color: #2f5d3a;
 }
@@ -244,6 +238,7 @@ input[type="search"] {
 
 .forum-search input {
   flex: 1;
+  /* min-width: 0 dovoli vstupu zmensit sa, aby na uzkych obrazovkach nepretiekol */
   min-width: 0;
 }
 
@@ -280,22 +275,28 @@ input[type="search"] {
   font-size: 14px;
 }
 
-/* Sekcia s nazvom - vyraznejsi ramik dookola, aby posobila uzavreto */
+/* Sekcia s nazvom (napr. Forum, Temy). Karta sama nema vnutorny padding, takze pruh
+   s nazvom prirodzene siaha az po okraje; obsah dostane odsadenie az cez .section-body.
+   Vyraznejsi ramik, aby sekcia posobila uzavreto. */
 .section-box {
   border-color: #d8cdbb;
+  padding: 0;
 }
 
-/* Nazov sekcie - pruh navrchu karty (napr. Forum, Temy).
-   Selektor .card .section-title je zamerne specifickejsi nez pravidlo .card h2,
-   aby sa uplatnil zaporny horny okraj (inak by nad pruhom ostala biela medzera). */
-.card .section-title {
-  margin: -16px -16px 16px; /* zaporny okraj roztiahne pruh po okraje karty (zrusi jej padding) */
+/* Pruh s nazvom navrchu sekcie */
+.section-title {
+  margin: 0;
   padding: 10px 16px;
   background-color: #f3e9dd;
   border-bottom: 1px solid #e0d8cc;
   border-radius: 6px 6px 0 0; /* zaoblenie len hore, rovnako ako karta */
   color: #2f5d3a;
   font-size: 16px;
+}
+
+/* Telo sekcie - odsadenie obsahu (tabulky) od okrajov karty */
+.section-body {
+  padding: 16px;
 }
 
 /* Tabulky */
@@ -318,10 +319,6 @@ th {
 /* Jemne striedanie farby riadkov (zebra) - lepsia citatelnost poukladanych poloziek */
 tbody tr:nth-child(even) {
   background-color: #faf6ef;
-}
-
-.num {
-  text-align: right;
 }
 
 /* Stlpec s poctami - odznak vycentrovany pod nadpisom stlpca */
