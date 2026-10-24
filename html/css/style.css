@@ -11,8 +11,18 @@ body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   color: #333;
-  background-color: #faf7f2;
+  /* Pozadie celej stranky: hexagonalny vzor (vceli plast) z Hero Patterns na teplom
+     kremovom podklade. Vzor sa donekonecna opakuje; v strede ho prekryva obsah (main).
+     background-size zvacsuje dlazdicu, takze sestuholniky su vacsie. */
+  background-color: #f3e9dd;
+  background-image: url("../img/honeycomb.svg");
+  background-size: 72px auto;
   line-height: 1.5;
+}
+
+/* Centralny pas s obsahom ostava cisty - sestuholniky vidno len po jeho bokoch */
+main {
+  background-color: #faf7f2;
 }
 
 /* Obrazky sa nikdy nepretiahnu cez svoj kontajner (ochrana proti horizontalnemu scrollu) */
