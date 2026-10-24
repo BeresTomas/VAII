@@ -18,11 +18,18 @@ body {
   background-image: url("../img/honeycomb.svg");
   background-size: 72px auto;
   line-height: 1.5;
+  /* Stlpec header-main-footer na celu vysku okna, aby paticka drzala na spodku
+     aj ked je obsahu malo (main vyplni zvysne miesto). */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Centralny pas s obsahom ostava cisty - sestuholniky vidno len po jeho bokoch */
+/* Centralny pas s obsahom ostava cisty - sestuholniky vidno len po jeho bokoch.
+   flex: 1 ho roztiahne, takze vyplni priestor az po paticku. */
 main {
   background-color: #faf7f2;
+  flex: 1;
 }
 
 /* Obrazky sa nikdy nepretiahnu cez svoj kontajner (ochrana proti horizontalnemu scrollu) */
@@ -49,7 +56,9 @@ a:hover {
 
 /* --- Hlavicka --- */
 .site-header {
-  background-color: #f3e9dd;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e0d8cc;
+  box-shadow: 0 2px 6px rgba(60, 45, 20, 0.08);
 }
 
 .header-inner {
@@ -306,8 +315,32 @@ th {
   color: #555;
 }
 
+/* Jemne striedanie farby riadkov (zebra) - lepsia citatelnost poukladanych poloziek */
+tbody tr:nth-child(even) {
+  background-color: #faf6ef;
+}
+
 .num {
   text-align: right;
+}
+
+/* Stlpec s poctami - odznak vycentrovany pod nadpisom stlpca */
+.count {
+  text-align: center;
+}
+
+/* Medovy "odznak" (kruzok) s cislom, napr. pocet odpovedi.
+   min-width + text-align: center drzia cislo v strede aj pri roznom pocte cifier. */
+.badge {
+  display: inline-block;
+  min-width: 26px;
+  padding: 2px 8px;
+  background-color: #ece0cb;
+  color: #6b5a3a;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .muted {
@@ -315,11 +348,12 @@ th {
   font-size: 13px;
 }
 
-/* Autor s avatarom */
-.author {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+/* Autor s avatarom.
+   Avatar a meno su v jednej linii cez vertical-align (NIE display:flex na bunke)
+   - flex na <td> by rozbil vysku riadka a spodne ciary tabulky by boli krive. */
+.author img {
+  vertical-align: middle;
+  margin-right: 8px;
 }
 
 .avatar {
@@ -364,11 +398,12 @@ th {
   margin: 20px 0;
 }
 
-/* --- Paticka --- */
+/* --- Paticka ---
+   Bez horneho marginu: ten by nad patickou odkryl pruh plastoveho pozadia.
+   Paticka nadvazuje priamo na obsah (main). */
 .site-footer {
-  background-color: #f3e9dd;
+  background-color: #ffffff;
   border-top: 1px solid #e0d8cc;
-  margin-top: 30px;
 }
 
 .footer-inner {
