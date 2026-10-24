@@ -294,9 +294,12 @@ input[type="search"] {
   font-size: 16px;
 }
 
-/* Telo sekcie - odsadenie obsahu (tabulky) od okrajov karty */
+/* Telo sekcie - odsadenie obsahu (tabulky) od okrajov karty.
+   overflow-x: auto -> siroka tabulka sa na uzkej obrazovke posuva v ramci svojho boxu,
+   takze sa neposuva cela stranka (ziadny vodorovny scroll layoutu). */
 .section-body {
   padding: 16px;
+  overflow-x: auto;
 }
 
 /* Tabulky */
