@@ -36,21 +36,32 @@
       <a href="forum.html">Fórum</a> / <span>Voľná debata</span>
     </nav>
 
-    <!-- Nadpis kategorie + moderatorske menu -->
-    <div class="page-head">
-      <h1>Voľná debata</h1>
-      <button type="button" class="btn">Moderátor menu</button>
-    </div>
+    <!-- Hlavicka kategorie v samostatnom boxe, oddelena od zvysku stranky -->
+    <section class="card category-header">
+      <div class="page-head">
+        <div>
+          <h1>Voľná debata</h1>
+          <p class="category-meta">9 tém · 120 príspevkov</p>
+        </div>
+        <!-- Moderator menu je skryte, lebo pouzivatel nie je prihlaseny -->
+      </div>
 
-    <!-- Vyhladavaci riadok s filtrom -->
-    <form class="forum-search">
-      <input type="search" placeholder="Sem píšte hľadaný výraz">
-      <button type="button" class="btn">Filtre</button>
-      <button type="submit" class="btn btn-primary">Vyhľadaj</button>
-    </form>
+      <p class="category-desc">
+        Priestor na voľnú diskusiu o všetkom okolo včiel a včelárenia – skúsenosti,
+        otázky, tipy aj bežné rozhovory medzi včelármi.
+      </p>
 
-    <!-- Tabulka podfor -->
-    <section class="card">
+      <!-- Vyhladavaci riadok s filtrom -->
+      <form class="forum-search">
+        <input type="search" placeholder="Sem píšte hľadaný výraz">
+        <button type="button" class="btn">Filtre</button>
+        <button type="submit" class="btn btn-primary">Vyhľadaj</button>
+      </form>
+    </section>
+
+    <!-- Podfora - prekliky na hlbsie zanorene kategorie -->
+    <section class="card section-box">
+      <h2 class="section-title">Fórum</h2>
       <table class="forum-table">
         <thead>
           <tr>
@@ -61,12 +72,18 @@
         </thead>
         <tbody>
           <tr>
-            <td><a href="#">Slovenský Zväz Včelárov</a></td>
+            <td>
+              <a href="#">Slovenský Zväz Včelárov</a>
+              <div class="muted">Oficiálne oznamy a diskusie zväzu</div>
+            </td>
             <td class="num">4</td>
             <td class="num">42</td>
           </tr>
           <tr>
-            <td><a href="#">Tipy a triky</a></td>
+            <td>
+              <a href="#">Tipy a triky</a>
+              <div class="muted">Praktické rady od skúsených včelárov</div>
+            </td>
             <td class="num">5</td>
             <td class="num">78</td>
           </tr>
@@ -74,20 +91,26 @@
       </table>
     </section>
 
-    <!-- Pridanie novej temy -->
-    <div class="actions">
+    <!-- Nastroje nad temami: pridanie novej temy + zoradenie -->
+    <div class="topics-toolbar">
       <button type="button" class="btn btn-primary">Pridať novú tému</button>
+      <div class="sort">
+        <span class="sort-label">Zoradiť podľa:</span>
+        <button type="button" class="btn">Dátum</button>
+        <button type="button" class="btn">Počet odpovedí</button>
+      </div>
     </div>
 
     <!-- Tabulka tem -->
-    <section class="card">
+    <section class="card section-box">
+      <h2 class="section-title">Témy</h2>
       <table class="topics-table">
         <thead>
           <tr>
             <th>Autor</th>
-            <th>Témy</th>
-            <th class="num">Počet odpovedí</th>
-            <th class="num">Zoradiť podľa</th>
+            <th>Téma</th>
+            <th class="num">Odpovede</th>
+            <th>Posledná odpoveď</th>
           </tr>
         </thead>
         <tbody>
@@ -96,27 +119,49 @@
               <img src="img/logo.svg" alt="Avatar" width="32" height="32" class="avatar">
               <span>Jožo</span>
             </td>
-            <td><a href="#">Primiešavate aj vy štipku soli do sirupu</a></td>
+            <td>
+              <a href="#">Primiešavate aj vy štipku soli do sirupu?</a>
+              <div class="muted">Pridané 20. 10. 2026</div>
+            </td>
             <td class="num">1</td>
-            <td class="num muted">Pred 2 dňami</td>
+            <td class="last-reply">
+              <a href="#" class="last-reply-link">
+                <img src="img/logo.svg" alt="Avatar" width="24" height="24" class="avatar">
+                <span>od Anka</span>
+              </a>
+              <div class="muted">21. 10. 2026</div>
+            </td>
           </tr>
           <tr>
             <td class="author">
               <img src="img/logo.svg" alt="Avatar" width="32" height="32" class="avatar">
               <span>Fero</span>
             </td>
-            <td><a href="#">Som zlý človek, ak nemám rád včely?</a></td>
+            <td>
+              <a href="#">Som zlý človek, ak nemám rád včely?</a>
+              <div class="muted">Pridané 15. 10. 2026</div>
+            </td>
             <td class="num">12</td>
-            <td class="num muted">Pred 3 dňami</td>
+            <td class="last-reply">
+              <a href="#" class="last-reply-link">
+                <img src="img/logo.svg" alt="Avatar" width="24" height="24" class="avatar">
+                <span>od Jožo</span>
+              </a>
+              <div class="muted">23. 10. 2026</div>
+            </td>
           </tr>
           <tr>
             <td class="author">
               <img src="img/logo.svg" alt="Avatar" width="32" height="32" class="avatar">
               <span>Anka</span>
             </td>
-            <td><a href="#">Najlepšie miesto na úľ v záhrade</a></td>
-            <td class="num">5</td>
-            <td class="num muted">Pred týždňom</td>
+            <td>
+              <a href="#">Odporučíte spoľahlivý medomet?</a>
+              <div class="muted">Pridané 24. 10. 2026</div>
+            </td>
+            <td class="num">0</td>
+            <!-- Ziadna odpoved -> posledna odpoved sa nezobrazuje -->
+            <td class="last-reply"></td>
           </tr>
         </tbody>
       </table>
