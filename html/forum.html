@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<!-- ApiForum - stranka kategorie fora "Volna debata" (netrivialna stranka). VAII, 4. tyzden. -->
+<!-- Markup aj CSS su generovane s pomocou AI (Claude) a nasledne upravene. -->
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voľná debata – ApiForum</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Hlavicka s logom a navigaciou (rovnaka ako na uvodnej stranke) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="index.html">
+        <img src="img/logo.svg" alt="Logo ApiForum" width="40" height="40">
+        <span class="logo-text">ApiForum</span>
+      </a>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="forum.html">Fórum</a></li>
+          <li><a href="#">Oznamy</a></li>
+          <li><a href="#">Galéria</a></li>
+          <li><a href="#">Viac</a></li>
+          <li><a href="#" class="nav-login">Login</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Omrvinkova navigacia -->
+    <nav class="breadcrumb">
+      <a href="forum.html">Fórum</a> / <span>Voľná debata</span>
+    </nav>
+
+    <!-- Nadpis kategorie + moderatorske menu -->
+    <div class="page-head">
+      <h1>Voľná debata</h1>
+      <button type="button" class="btn">Moderátor menu</button>
+    </div>
+
+    <!-- Vyhladavaci riadok s filtrom -->
+    <form class="forum-search">
+      <input type="search" placeholder="Sem píšte hľadaný výraz">
+      <button type="button" class="btn">Filtre</button>
+      <button type="submit" class="btn btn-primary">Vyhľadaj</button>
+    </form>
+
+    <!-- Tabulka podfor -->
+    <section class="card">
+      <table class="forum-table">
+        <thead>
+          <tr>
+            <th>Fórum</th>
+            <th class="num">Témy</th>
+            <th class="num">Príspevky</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#">Slovenský Zväz Včelárov</a></td>
+            <td class="num">4</td>
+            <td class="num">42</td>
+          </tr>
+          <tr>
+            <td><a href="#">Tipy a triky</a></td>
+            <td class="num">5</td>
+            <td class="num">78</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Pridanie novej temy -->
+    <div class="actions">
+      <button type="button" class="btn btn-primary">Pridať novú tému</button>
+    </div>
+
+    <!-- Tabulka tem -->
+    <section class="card">
+      <table class="topics-table">
+        <thead>
+          <tr>
+            <th>Autor</th>
+            <th>Témy</th>
+            <th class="num">Počet odpovedí</th>
+            <th class="num">Zoradiť podľa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="author">
+              <img src="img/logo.svg" alt="Avatar" width="32" height="32" class="avatar">
+              <span>Jožo</span>
+            </td>
+            <td><a href="#">Primiešavate aj vy štipku soli do sirupu</a></td>
+            <td class="num">1</td>
+            <td class="num muted">Pred 2 dňami</td>
+          </tr>
+          <tr>
+            <td class="author">
+              <img src="img/logo.svg" alt="Avatar" width="32" height="32" class="avatar">
+              <span>Fero</span>
+            </td>
+            <td><a href="#">Som zlý človek, ak nemám rád včely?</a></td>
+            <td class="num">12</td>
+            <td class="num muted">Pred 3 dňami</td>
+          </tr>
+          <tr>
+            <td class="author">
+              <img src="img/logo.svg" alt="Avatar" width="32" height="32" class="avatar">
+              <span>Anka</span>
+            </td>
+            <td><a href="#">Najlepšie miesto na úľ v záhrade</a></td>
+            <td class="num">5</td>
+            <td class="num muted">Pred týždňom</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Strankovanie -->
+      <nav class="pagination">
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+      </nav>
+    </section>
+
+    <!-- Spodna info lista -->
+    <div class="info-bar">
+      <span>Aktuálne je prihlásených: 26 užívateľov</span>
+      <span>Meniny má dnes: Adrián</span>
+    </div>
+
+  </main>
+
+  <!-- Paticka -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <ul class="footer-links">
+        <li><a href="#">Podmienky používania</a></li>
+        <li><a href="#">Ochrana osobných údajov</a></li>
+        <li><a href="#">Kontakty</a></li>
+      </ul>
+      <p class="copyright">© 2026 ApiForum</p>
+    </div>
+  </footer>
+
+</body>
+</html>
