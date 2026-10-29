@@ -14,7 +14,7 @@
 <div class="layout">
 
     <!-- Lavy stlpec: hlavny obsah -->
-    <section class="content">
+    <div class="content">
         <article class="card">
             <h2>Vitajte v komunite</h2>
             <p>
@@ -44,7 +44,7 @@
                 <li><a href="<?= $link->url('forum.index') ?>">Najlepšie miesto na úľ v záhrade</a></li>
             </ul>
         </section>
-    </section>
+    </div>
 
     <!-- Pravy stlpec: bocny panel -->
     <aside class="sidebar">
