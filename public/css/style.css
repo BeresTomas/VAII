@@ -429,6 +429,86 @@ tbody tr:nth-child(even) {
   color: #777;
 }
 
+/* --- Profil pouzivatela --- */
+/* Hlavicka profilu - karta bez vnutorneho paddingu, aby banner siahal az po jej okraje */
+.profile-header {
+  padding: 0;
+}
+
+/* Banner - zatial len farebny pas namiesto fotky */
+.profile-banner {
+  height: 140px;
+  background-color: #ede3d5;
+  border-radius: 6px 6px 0 0; /* zaoblenie len hore, rovnako ako karta */
+}
+
+/* Riadok pod bannerom: fotka, meno s udajmi a tlacidla vedla seba */
+.profile-top {
+  display: flex;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 0 16px 16px;
+}
+
+/* Profilova fotka - zaporny horny okraj ju posunie hore, takze ciastocne prekryva banner.
+   align-self: flex-start ju zarovna k hornemu okraju riadku, inak by sa posun neprejavil. */
+.profile-photo {
+  align-self: flex-start;
+  margin-top: -48px;
+  background-color: #ffffff;
+  border: 4px solid #ffffff;
+}
+
+/* Meno a udaje zaberu zvysne miesto medzi fotkou a tlacidlami */
+.profile-info {
+  flex: 1;
+}
+
+.profile-info h1 {
+  margin: 0;
+  color: #2f5d3a;
+}
+
+.profile-info p {
+  margin: 4px 0 0;
+}
+
+.profile-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Tlacidla v profile aspon 44 px vysoke - pohodlne kliknutie aj na mobile */
+.profile-actions .btn {
+  min-height: 44px;
+}
+
+/* Pas so statistikami - styri cisla vedla seba, oddeleny ciarou od hlavicky */
+.profile-stats {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #e0d8cc;
+}
+
+.profile-stats li {
+  flex: 1;
+  padding: 12px;
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+}
+
+/* Cislo nad popisom, vacsim pismom */
+.profile-stats strong {
+  display: block;
+  font-size: 20px;
+  color: #2f5d3a;
+}
+
 /* --- Responzivita: mobil a uzke obrazovky --- */
 @media (max-width: 768px) {
   /* Hlavicka sa zalomi do stlpca */
@@ -457,5 +537,14 @@ tbody tr:nth-child(even) {
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  /* Statistiky profilu v dvoch radoch po dvoch */
+  .profile-stats {
+    flex-wrap: wrap;
+  }
+
+  .profile-stats li {
+    flex-basis: 50%;
   }
 }
