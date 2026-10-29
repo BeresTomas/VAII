@@ -2,38 +2,79 @@
 
 /** @var \Framework\Support\LinkGenerator $link */
 ?>
+<!-- Uvodna stranka - obsah prevzaty z html/index.html (Uloha 4, generovane s pomocou AI a upravene). -->
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col mt-5">
-            <div class="text-center">
-                <h2>Vaííčko MVC FW</h2>
-                <h3>Version <?= App\Configuration::FW_VERSION ?></h3>
-                <img src="<?= $link->asset('images/vaiicko_logo.png') ?>" alt="Framework Logo">
-                <p>
-                    Congratulations, you have successfully installed and run the framework
-                    <strong>Vaííčko</strong> <?= App\Configuration::FW_VERSION ?>!<br>
-                    We hope that you will create a great application using this framework.<br>
-                </p>
-                <p>
-                    This simple framework was created for teaching purposes and to better understand how the MVC
-                    architecture works.<br>
-                    It is intended for students of the subject <em>web application development</em>, but not only
-                    for them.
-                </p>
-            </div>
+<!-- Hero / privitanie -->
+<section class="hero">
+    <h1>ApiForum</h1>
+    <p>Diskusné fórum pre každého včelára.</p>
+</section>
+
+<!-- Dvojstlpcove rozlozenie: obsah + bocny panel -->
+<div class="layout">
+
+    <!-- Lavy stlpec: hlavny obsah -->
+    <section class="content">
+        <article class="card">
+            <h2>Vitajte v komunite</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent
+                commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed
+                odio dui. Vivamus sagittis lacus vel augue laoreet rutrum faucibus.
+            </p>
+        </article>
+
+        <div class="block-row">
+            <article class="card">
+                <h3><a href="#">Pre začiatočníkov</a></h3>
+                <p>Nulla vitae elit libero, a pharetra augue. Morbi leo risus.</p>
+            </article>
+            <article class="card">
+                <h3><a href="#">Choroby včiel</a></h3>
+                <p>Cras mattis consectetur purus sit amet fermentum. Aenean lacinia.</p>
+            </article>
         </div>
-    </div>
-    <div class="row mt-3">
-        <div class="col text-center">
-            <h4>Authors</h4>
-            <div>
-                <a href="mailto:Patrik.Hrkut@fri.uniza.sk">doc. Ing. Patrik Hrkút, PhD.</a><br>
-                <a href="mailto:Michal.Duracik@fri.uniza.sk">Ing. Michal Ďuračík, PhD.</a><br>
-                <a href="mailto:Matej.Mesko@fri.uniza.sk">Ing. Matej Meško, PhD.</a><br><br>
-                &copy; 2020-<?= date('Y') ?> University of Žilina, Faculty of Management Science and Informatics,
-                Department of Software Technologies
+
+        <!-- Trending temy -->
+        <section class="card">
+            <h2>Trending Témy</h2>
+            <ul class="topic-list">
+                <li><a href="<?= $link->url('forum.index') ?>">Primiešavate aj vy štipku soli do sirupu?</a></li>
+                <li><a href="<?= $link->url('forum.index') ?>">Som zlý človek, ak nemám rád včely?</a></li>
+                <li><a href="<?= $link->url('forum.index') ?>">Najlepšie miesto na úľ v záhrade</a></li>
+            </ul>
+        </section>
+    </section>
+
+    <!-- Pravy stlpec: bocny panel -->
+    <aside class="sidebar">
+        <section class="card">
+            <h3>Vyhľadávanie</h3>
+            <form class="search-form">
+                <input type="search" placeholder="Hľadať vo fóre...">
+                <button type="submit">Hľadať</button>
+            </form>
+        </section>
+
+        <section class="card">
+            <h3>Najnovšie oznamy</h3>
+            <ul class="notice-list">
+                <li>Letná sezóna sa blíži – pripravte úle</li>
+                <li>Nové tlačivá na stiahnutie v sekcii Viac</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h3><a href="#">Galéria</a></h3>
+            <div class="gallery-mini">
+                <span class="photo"></span>
+                <span class="photo"></span>
+                <span class="photo"></span>
+                <span class="photo"></span>
+                <span class="photo"></span>
+                <span class="photo"></span>
             </div>
-        </div>
-    </div>
+        </section>
+    </aside>
+
 </div>
