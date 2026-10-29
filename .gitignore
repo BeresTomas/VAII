@@ -13,6 +13,8 @@ Thumbs.db
 # Environment & secrets
 .env
 .env.local
+# Docker konfiguracia Vaiicka (len lokalne vyvojove hesla), docker-compose ju potrebuje
+!docker/.env
 
 # Logs
 *.log
