@@ -1,6 +1,7 @@
 <?php
 
 /** @var \Framework\Support\LinkGenerator $link */
+/** @var \Framework\Auth\AppUser $user */
 ?>
 <!-- Profil pouzivatela - staticky obsah, neskor sa nacita z databazy.
      Generovane s pomocou AI (Claude) a upravene. -->
@@ -44,3 +45,62 @@
         <li><strong>18</strong> fotiek</li>
     </ul>
 </section>
+
+<!-- Dvojstlpcove rozlozenie: vlavo bocny panel, vpravo hlavny obsah -->
+<div class="layout">
+
+    <!-- Lavy stlpec: informacie o pouzivatelovi -->
+    <aside class="sidebar">
+        <section class="card section-box">
+            <h2 class="section-title">O mne</h2>
+            <div class="section-body">
+                <p class="profile-bio">
+                    Včelárim od roku 2009, začínal som s dvomi úľmi po starom otcovi.
+                    Najradšej riešim chov matiek a jarný rozvoj včelstiev.
+                </p>
+                <!-- Zoznam udajov "popis: hodnota" - kazda dvojica je v div, aby bola na jednom riadku -->
+                <dl class="profile-details">
+                    <div><dt>Lokalita</dt><dd>Liptovský Mikuláš</dd></div>
+                    <div><dt>Prax</dt><dd>17 rokov</dd></div>
+                    <div><dt>Počet včelstiev</dt><dd>24</dd></div>
+                    <div><dt>Typ úľov</dt><dd>Langstroth</dd></div>
+                    <div><dt>Plemeno včiel</dt><dd>Kranská včela</dd></div>
+                    <div><dt>Organizácia</dt><dd>SZV, ZO Liptovský Mikuláš</dd></div>
+                </dl>
+            </div>
+        </section>
+
+        <section class="card section-box">
+            <h2 class="section-title">Kontakt</h2>
+            <div class="section-body">
+                <!-- Kontakt vidia len prihlaseni pouzivatelia (rovnaky if ako v layoute Vaiicka) -->
+                <?php if ($user->isLoggedIn()) { ?>
+                    <dl class="profile-details">
+                        <div><dt>E-mail</dt><dd><a href="mailto:jozo@example.com">jozo@example.com</a></dd></div>
+                        <div><dt>Telefón</dt><dd>+421 900 123 456</dd></div>
+                        <div><dt>Web</dt><dd><a href="#">Včelárstvo Jožo</a></dd></div>
+                        <div><dt>Predaj medu</dt><dd>áno</dd></div>
+                    </dl>
+                <?php } else { ?>
+                    <p class="muted profile-note">Kontaktné údaje vidia len prihlásení používatelia.</p>
+                <?php } ?>
+            </div>
+        </section>
+
+        <section class="card section-box">
+            <h2 class="section-title">Najaktívnejší v</h2>
+            <div class="section-body">
+                <ul class="profile-active">
+                    <li><a href="#">Tipy a triky</a> <span class="badge">128</span></li>
+                    <li><a href="<?= $link->url('forum.index') ?>">Voľná debata</a> <span class="badge">96</span></li>
+                    <li><a href="#">Choroby včiel</a> <span class="badge">54</span></li>
+                </ul>
+            </div>
+        </section>
+    </aside>
+
+    <!-- Pravy stlpec: hlavny obsah (zalozky a aktivita pribudnu v dalsom kroku) -->
+    <div class="content">
+    </div>
+
+</div>

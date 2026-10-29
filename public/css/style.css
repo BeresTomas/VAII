@@ -509,6 +509,59 @@ tbody tr:nth-child(even) {
   color: #2f5d3a;
 }
 
+/* Kratky text o pouzivatelovi nad zoznamom udajov */
+.profile-bio {
+  margin-top: 0;
+}
+
+/* Zoznam udajov "popis: hodnota" (O mne, Kontakt).
+   Kazda dvojica dt + dd je v jednom div - popis vlavo, hodnota vpravo na jednom riadku. */
+.profile-details {
+  margin: 0;
+}
+
+.profile-details div {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+}
+
+/* Posledny riadok bez ciary, aby nebola dvojita ciara pri spodku karty */
+.profile-details div:last-child {
+  border-bottom: none;
+}
+
+.profile-details dt {
+  color: #777;
+}
+
+/* dd ma v prehliadaci predvoleny lavy okraj - zrusime ho */
+.profile-details dd {
+  margin: 0;
+  text-align: right;
+}
+
+/* Poznamka namiesto kontaktu (neprihlaseny) - bez predvolenych okrajov odseku */
+.profile-note {
+  margin: 0;
+}
+
+/* Najaktivnejsi v: nazov sekcie vlavo, pocet prispevkov vpravo */
+.profile-active {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.profile-active li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+}
+
 /* --- Responzivita: mobil a uzke obrazovky --- */
 @media (max-width: 768px) {
   /* Hlavicka sa zalomi do stlpca */
