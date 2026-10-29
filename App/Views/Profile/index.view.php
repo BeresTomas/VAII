@@ -99,8 +99,77 @@
         </section>
     </aside>
 
-    <!-- Pravy stlpec: hlavny obsah (zalozky a aktivita pribudnu v dalsom kroku) -->
+    <!-- Pravy stlpec: zalozky a aktivita pouzivatela -->
     <div class="content">
+        <!-- Zalozky - zatial len vizualne, aktivna je Aktivita (prepinanie by potrebovalo JS) -->
+        <div class="profile-toolbar">
+            <nav class="profile-tabs">
+                <a href="#" class="active">Aktivita</a>
+                <a href="#">Témy (12)</a>
+                <a href="#">Príspevky (340)</a>
+                <a href="#">Galéria (18)</a>
+            </nav>
+            <button type="button" class="btn">Zoradiť podľa</button>
+        </div>
+
+        <!-- Casova os aktivity - kazda polozka je samostatna karta -->
+        <article class="card activity-item">
+            <div class="activity-head">
+                <span>Založil tému vo <a href="<?= $link->url('forum.index') ?>">Voľná debata</a></span>
+                <span>Pred 2 dňami</span>
+            </div>
+            <h3><a href="#">Primiešavate aj vy štipku soli do sirupu?</a></h3>
+            <p class="activity-meta">5 odpovedí · 214 zobrazení · 12 „Ďakujem“</p>
+        </article>
+
+        <article class="card activity-item">
+            <div class="activity-head">
+                <span>Odpovedal v sekcii <a href="#">Tipy a triky</a></span>
+                <span>Pred 3 dňami</span>
+            </div>
+            <h3><a href="#">Ako pripraviť včelstvá na zimu?</a></h3>
+            <p class="activity-excerpt">
+                Ja kŕmim do konca augusta a potom už len kontrolujem zásoby. Dôležité je mať
+                silné včelstvo a dobre utesnený úľ, aby neťahalo.
+            </p>
+            <p class="activity-meta">4 „Ďakujem“</p>
+        </article>
+
+        <article class="card activity-item">
+            <div class="activity-head">
+                <span>Pridal fotky do <a href="#">Galérie</a></span>
+                <span>Pred týždňom</span>
+            </div>
+            <h3><a href="#">Jarná prehliadka včelnice</a></h3>
+            <!-- Nahlady fotiek - zatial sive stvorce, rovnako ako na uvodnej stranke -->
+            <div class="gallery-mini">
+                <span class="photo"></span>
+                <span class="photo"></span>
+                <span class="photo"></span>
+                <span class="photo"></span>
+            </div>
+            <p class="activity-meta">4 fotky · 9 „Ďakujem“</p>
+        </article>
+
+        <article class="card activity-item">
+            <div class="activity-head">
+                <span>Publikoval návod v <a href="#">Pre začiatočníkov</a></span>
+                <span>Pred 2 týždňami</span>
+            </div>
+            <h3><a href="#">Návod: prvá jarná prehliadka krok za krokom</a></h3>
+            <p class="activity-excerpt">
+                Prvú prehliadku robte za teplého dňa nad 15 °C. Skontrolujte, či má včelstvo
+                matku, plod a dostatok zásob.
+            </p>
+            <p class="activity-meta">18 odpovedí · 1 024 zobrazení · 47 „Ďakujem“</p>
+        </article>
+
+        <!-- Strankovanie - rovnake ako vo vypise fora -->
+        <nav class="pagination">
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+        </nav>
     </div>
 
 </div>

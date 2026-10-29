@@ -381,7 +381,9 @@ tbody tr:nth-child(even) {
   border-radius: 4px;
 }
 
-.pagination a.active {
+/* Aktivna stranka - rovnaky medovy styl ma aj aktivna zalozka v profile */
+.pagination a.active,
+.profile-tabs a.active {
   background-color: #f08a1d;
   border-color: #c96f10;
   color: #ffffff;
@@ -481,7 +483,8 @@ tbody tr:nth-child(even) {
 }
 
 /* Tlacidla v profile aspon 44 px vysoke - pohodlne kliknutie aj na mobile */
-.profile-actions .btn {
+.profile-actions .btn,
+.profile-toolbar .btn {
   min-height: 44px;
 }
 
@@ -560,6 +563,64 @@ tbody tr:nth-child(even) {
   justify-content: space-between;
   align-items: center;
   padding: 6px 0;
+}
+
+/* Riadok nad aktivitou: zalozky vlavo, tlacidlo Zoradit vpravo */
+.profile-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.profile-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* Zalozka - padding 10px da spolu s riadkom textu vysku 44 px (pohodlne na mobile) */
+.profile-tabs a {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+/* Hlavicka polozky aktivity: typ akcie vlavo, cas vpravo, malym pismom */
+.activity-head {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  color: #777;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.activity-item h3 {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+/* Uryvok textu prispevku */
+.activity-excerpt {
+  margin: 0 0 8px;
+  color: #555;
+}
+
+/* Nahlady fotiek v polozke aktivity - odsadenie od metadat pod nimi */
+.activity-item .gallery-mini {
+  margin-bottom: 8px;
+}
+
+/* Metadata dole: pocet odpovedi, zobrazeni, "Dakujem" */
+.activity-meta {
+  margin: 0;
+  color: #999;
+  font-size: 13px;
 }
 
 /* --- Responzivita: mobil a uzke obrazovky --- */
