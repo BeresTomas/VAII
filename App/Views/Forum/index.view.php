@@ -88,7 +88,7 @@
             <tbody>
             <tr>
                 <td class="author">
-                    <img src="<?= $link->asset('img/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
+                    <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
                     <span>Jožo</span>
                 </td>
                 <td>
@@ -98,7 +98,7 @@
                 <td class="count"><span class="badge">1</span></td>
                 <td class="last-reply">
                     <a href="#" class="last-reply-link">
-                        <img src="<?= $link->asset('img/logo.svg') ?>" alt="Avatar" width="24" height="24" class="avatar">
+                        <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="24" height="24" class="avatar">
                         <span>od Anka</span>
                     </a>
                     <div class="muted">21. 10. 2026</div>
@@ -106,7 +106,7 @@
             </tr>
             <tr>
                 <td class="author">
-                    <img src="<?= $link->asset('img/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
+                    <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
                     <span>Fero</span>
                 </td>
                 <td>
@@ -116,7 +116,7 @@
                 <td class="count"><span class="badge">12</span></td>
                 <td class="last-reply">
                     <a href="#" class="last-reply-link">
-                        <img src="<?= $link->asset('img/logo.svg') ?>" alt="Avatar" width="24" height="24" class="avatar">
+                        <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="24" height="24" class="avatar">
                         <span>od Jožo</span>
                     </a>
                     <div class="muted">23. 10. 2026</div>
@@ -124,7 +124,7 @@
             </tr>
             <tr>
                 <td class="author">
-                    <img src="<?= $link->asset('img/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
+                    <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
                     <span>Anka</span>
                 </td>
                 <td>

@@ -15,7 +15,7 @@ body {
      kremovom podklade. Vzor sa donekonecna opakuje; v strede ho prekryva obsah (main).
      background-size zvacsuje dlazdicu, takze sestuholniky su vacsie. */
   background-color: #f3e9dd;
-  background-image: url("../img/honeycomb.svg");
+  background-image: url("../images/honeycomb.svg");
   background-size: 72px auto;
   line-height: 1.5;
   /* Stlpec header-main-footer na celu vysku okna, aby paticka drzala na spodku

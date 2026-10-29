@@ -12,7 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= App\Configuration::APP_NAME ?> – Diskusné fórum pre včelárov</title>
-    <link rel="icon" type="image/svg+xml" href="<?= $link->asset('img/logo.svg') ?>">
+    <link rel="icon" type="image/svg+xml" href="<?= $link->asset('images/logo.svg') ?>">
     <link rel="stylesheet" href="<?= $link->asset('css/style.css') ?>">
 </head>
 <body>
@@ -21,7 +21,7 @@
 <header class="site-header">
     <div class="container header-inner">
         <a class="logo" href="<?= $link->url('home.index') ?>">
-            <img src="<?= $link->asset('img/logo.svg') ?>" alt="Logo ApiForum" width="40" height="40">
+            <img src="<?= $link->asset('images/logo.svg') ?>" alt="Logo ApiForum" width="40" height="40">
             <span class="logo-text">ApiForum</span>
         </a>
         <nav class="main-nav">
