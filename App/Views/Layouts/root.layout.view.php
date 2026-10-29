@@ -47,7 +47,7 @@
         <ul class="footer-links">
             <li><a href="#">Podmienky používania</a></li>
             <li><a href="#">Ochrana osobných údajov</a></li>
-            <li><a href="<?= $link->url('home.contact') ?>">Kontakty</a></li>
+            <li><a href="#">Kontakty</a></li>
         </ul>
         <p class="copyright">© <?= date('Y') ?> ApiForum</p>
     </div>
