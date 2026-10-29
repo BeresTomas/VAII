@@ -89,7 +89,7 @@
             <tr>
                 <td class="author">
                     <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
-                    <span>Jožo</span>
+                    <a href="<?= $link->url('profile.index') ?>">Jožo</a>
                 </td>
                 <td>
                     <a href="#">Primiešavate aj vy štipku soli do sirupu?</a>
@@ -107,7 +107,7 @@
             <tr>
                 <td class="author">
                     <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
-                    <span>Fero</span>
+                    <a href="<?= $link->url('profile.index') ?>">Fero</a>
                 </td>
                 <td>
                     <a href="#">Som zlý človek, ak nemám rád včely?</a>
@@ -125,7 +125,7 @@
             <tr>
                 <td class="author">
                     <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
-                    <span>Anka</span>
+                    <a href="<?= $link->url('profile.index') ?>">Anka</a>
                 </td>
                 <td>
                     <a href="#">Odporučíte spoľahlivý medomet?</a>
