@@ -5,54 +5,53 @@
 /** @var \Framework\Support\LinkGenerator $link */
 ?>
 <!DOCTYPE html>
+<!-- ApiForum - spolocne rozlozenie (hlavicka, navigacia, paticka). VAII, 5. tyzden. -->
+<!-- Prevzate z html/index.html, ktore bolo generovane s pomocou AI (Claude) a upravene. -->
 <html lang="sk">
 <head>
-    <title><?= App\Configuration::APP_NAME ?></title>
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="<?= $link->asset('favicons/apple-touch-icon.png') ?>">
-    <link rel="icon" type="image/png" sizes="32x32" href="<?= $link->asset('favicons/favicon-32x32.png') ?>">
-    <link rel="icon" type="image/png" sizes="16x16" href="<?= $link->asset('favicons/favicon-16x16.png') ?>">
-    <link rel="manifest" href="<?= $link->asset('favicons/site.webmanifest') ?>">
-    <link rel="shortcut icon" href="<?= $link->asset('favicons/favicon.ico') ?>">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?= $link->asset('css/styl.css') ?>">
-    <script src="<?= $link->asset('js/script.js') ?>"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= App\Configuration::APP_NAME ?> – Diskusné fórum pre včelárov</title>
+    <link rel="icon" type="image/svg+xml" href="<?= $link->asset('img/logo.svg') ?>">
+    <link rel="stylesheet" href="<?= $link->asset('css/style.css') ?>">
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="<?= $link->url('home.index') ?>">
-            <img src="<?= $link->asset('images/vaiicko_logo.png') ?>" title="<?= App\Configuration::APP_NAME ?>" alt="Framework Logo">
+
+<!-- Hlavicka s logom a navigaciou -->
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="logo" href="<?= $link->url('home.index') ?>">
+            <img src="<?= $link->asset('img/logo.svg') ?>" alt="Logo ApiForum" width="40" height="40">
+            <span class="logo-text">ApiForum</span>
         </a>
-        <ul class="navbar-nav me-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="<?= $link->url('home.contact') ?>">Contact</a>
-            </li>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="<?= $link->url('forum.index') ?>">Fórum</a></li>
+                <li><a href="#">Oznamy</a></li>
+                <li><a href="#">Galéria</a></li>
+                <li><a href="#">Viac</a></li>
+                <li><a href="<?= App\Configuration::LOGIN_URL ?>" class="nav-login">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<!-- Hlavny obsah stranky - sem framework vlozi vystup pohladu -->
+<main class="container">
+    <?= $contentHTML ?>
+</main>
+
+<!-- Paticka -->
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <ul class="footer-links">
+            <li><a href="#">Podmienky používania</a></li>
+            <li><a href="#">Ochrana osobných údajov</a></li>
+            <li><a href="<?= $link->url('home.contact') ?>">Kontakty</a></li>
         </ul>
-        <?php if ($user->isLoggedIn()) { ?>
-            <span class="navbar-text">Logged in user: <b><?= e($user->getName()) ?></b></span>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= $link->url('auth.logout') ?>">Log out</a>
-                </li>
-            </ul>
-        <?php } else { ?>
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="<?= App\Configuration::LOGIN_URL ?>">Log in</a>
-                </li>
-            </ul>
-        <?php } ?>
+        <p class="copyright">© <?= date('Y') ?> ApiForum</p>
     </div>
-</nav>
-<div class="container-fluid mt-3">
-    <div class="web-content">
-        <?= $contentHTML ?>
-    </div>
-</div>
+</footer>
+
 </body>
 </html>
