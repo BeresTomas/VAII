@@ -165,11 +165,36 @@
         </article>
 
         <!-- Strankovanie - rovnake ako vo vypise fora -->
-        <nav class="pagination">
+        <nav class="pagination profile-pagination">
             <a href="#" class="active">1</a>
             <a href="#">2</a>
             <a href="#">3</a>
         </nav>
+
+        <!-- Posledne fotky pouzivatela z galerie -->
+        <section class="card section-box">
+            <h2 class="section-title profile-gallery-title">
+                Z galérie
+                <a href="#">Zobraziť všetky (18)</a>
+            </h2>
+            <div class="section-body">
+                <!-- Nahlady - zatial sive stvorce namiesto fotiek -->
+                <div class="profile-gallery">
+                    <span class="photo"></span>
+                    <span class="photo"></span>
+                    <span class="photo"></span>
+                    <span class="photo"></span>
+                    <span class="photo"></span>
+                    <span class="photo"></span>
+                </div>
+            </div>
+        </section>
     </div>
 
+</div>
+
+<!-- Spodna info lista - rovnaka ako na stranke fora -->
+<div class="info-bar">
+    <span>Aktuálne je prihlásených: 26 užívateľov</span>
+    <span>Meniny má dnes: Adrián</span>
 </div>

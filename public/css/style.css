@@ -623,6 +623,37 @@ tbody tr:nth-child(even) {
   font-size: 13px;
 }
 
+/* Strankovanie v profile nie je v karte - odsadenie od bloku Z galerie pod nim */
+.profile-pagination {
+  margin-bottom: 20px;
+}
+
+/* Nadpis bloku Z galerie: nazov vlavo, odkaz "Zobrazit vsetky" vpravo */
+.profile-gallery-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-gallery-title a {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+/* Mriezka nahladov - 3 rovnako siroke stlpce, 6 fotiek = 2 riadky */
+.profile-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.profile-gallery .photo {
+  height: 100px;
+  background-color: #e0d8cc;
+  border-radius: 4px;
+}
+
 /* --- Responzivita: mobil a uzke obrazovky --- */
 @media (max-width: 768px) {
   /* Hlavicka sa zalomi do stlpca */
