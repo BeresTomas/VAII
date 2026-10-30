@@ -854,6 +854,11 @@ a.btn:hover {
     align-items: flex-start;
   }
 
+  /* Strankovanie - vacsie odkazy (aspon 44 px), aby sa na ne dalo pohodlne kliknut */
+  .pagination a {
+    padding: 10px 14px;
+  }
+
   /* Prispevok: autor nad textom ako kompaktny riadok (fotka vedla mena) */
   .post {
     flex-direction: column;
