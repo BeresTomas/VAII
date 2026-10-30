@@ -25,4 +25,14 @@ class ForumController extends BaseController
     {
         return $this->html();
     }
+
+    /**
+     * Displays the detail of one topic with its posts.
+     *
+     * @return Response The response object containing the rendered HTML for the topic page.
+     */
+    public function topic(Request $request): Response
+    {
+        return $this->html();
+    }
 }

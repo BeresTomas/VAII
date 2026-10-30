@@ -92,12 +92,12 @@
                     <a href="<?= $link->url('profile.index') ?>">Jožo</a>
                 </td>
                 <td>
-                    <a href="#">Primiešavate aj vy štipku soli do sirupu?</a>
+                    <a href="<?= $link->url('forum.topic') ?>">Primiešavate aj vy štipku soli do sirupu?</a>
                     <div class="muted">Pridané 20. 10. 2026</div>
                 </td>
-                <td class="count"><span class="badge">1</span></td>
+                <td class="count"><span class="badge">3</span></td>
                 <td class="last-reply">
-                    <a href="#" class="last-reply-link">
+                    <a href="<?= $link->url('forum.topic') ?>" class="last-reply-link">
                         <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="24" height="24" class="avatar">
                         <span>od Anka</span>
                     </a>
@@ -110,12 +110,12 @@
                     <a href="<?= $link->url('profile.index') ?>">Fero</a>
                 </td>
                 <td>
-                    <a href="#">Som zlý človek, ak nemám rád včely?</a>
+                    <a href="<?= $link->url('forum.topic') ?>">Som zlý človek, ak nemám rád včely?</a>
                     <div class="muted">Pridané 15. 10. 2026</div>
                 </td>
                 <td class="count"><span class="badge">12</span></td>
                 <td class="last-reply">
-                    <a href="#" class="last-reply-link">
+                    <a href="<?= $link->url('forum.topic') ?>" class="last-reply-link">
                         <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="24" height="24" class="avatar">
                         <span>od Jožo</span>
                     </a>
@@ -128,7 +128,7 @@
                     <a href="<?= $link->url('profile.index') ?>">Anka</a>
                 </td>
                 <td>
-                    <a href="#">Odporučíte spoľahlivý medomet?</a>
+                    <a href="<?= $link->url('forum.topic') ?>">Odporučíte spoľahlivý medomet?</a>
                     <div class="muted">Pridané 24. 10. 2026</div>
                 </td>
                 <td class="count"><span class="badge">0</span></td>

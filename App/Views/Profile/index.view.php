@@ -118,8 +118,8 @@
                 <span>Založil tému vo <a href="<?= $link->url('forum.index') ?>">Voľná debata</a></span>
                 <span>Pred 2 dňami</span>
             </div>
-            <h3><a href="#">Primiešavate aj vy štipku soli do sirupu?</a></h3>
-            <p class="activity-meta">5 odpovedí · 214 zobrazení · 12 „Ďakujem“</p>
+            <h3><a href="<?= $link->url('forum.topic') ?>">Primiešavate aj vy štipku soli do sirupu?</a></h3>
+            <p class="activity-meta">3 odpovede · 214 zobrazení · 12 „Ďakujem“</p>
         </article>
 
         <article class="card activity-item">
