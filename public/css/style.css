@@ -484,7 +484,8 @@ tbody tr:nth-child(even) {
 
 /* Tlacidla v profile aspon 44 px vysoke - pohodlne kliknutie aj na mobile */
 .profile-actions .btn,
-.profile-toolbar .btn {
+.profile-toolbar .btn,
+.topic-buttons .btn {
   min-height: 44px;
 }
 
@@ -652,6 +653,32 @@ tbody tr:nth-child(even) {
   height: 100px;
   background-color: #e0d8cc;
   border-radius: 4px;
+}
+
+/* --- Detail temy --- */
+/* Odkaz vyzerajuci ako tlacidlo - text je vo vyske vycentrovany a nepodciarkuje sa */
+a.btn {
+  display: inline-flex;
+  align-items: center;
+}
+
+a.btn:hover {
+  text-decoration: none;
+}
+
+/* Riadok s tlacidlami v zahlavi temy - v karte nepotrebuje spodny okraj */
+.topic-toolbar {
+  margin-bottom: 0;
+}
+
+.topic-toolbar .pagination {
+  margin-top: 0;
+}
+
+.topic-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 /* --- Responzivita: mobil a uzke obrazovky --- */
