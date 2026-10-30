@@ -668,12 +668,12 @@ a.btn:hover {
   text-decoration: none;
 }
 
-/* Riadok s tlacidlami v zahlavi temy - v karte nepotrebuje spodny okraj */
-.topic-toolbar {
-  margin-bottom: 0;
+/* Nazov temy navrchu karty s uvodnym prispevkom, oddeleny ciarou od prispevku */
+.topic-title {
+  padding: 16px;
+  border-bottom: 1px solid #e0d8cc;
 }
 
-.topic-toolbar .pagination,
 .topic-pagination {
   margin-top: 0;
 }
@@ -729,7 +729,7 @@ a.btn:hover {
   margin: 6px 0 0;
 }
 
-/* Prvy prispevok v teme - ine pozadie autora a vyraznejsi okraj */
+/* Karta s nazvom temy a prvym prispevkom - ine pozadie autora a vyraznejsi okraj */
 .post-first {
   border-left: 3px solid #f08a1d;
 }

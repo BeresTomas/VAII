@@ -17,37 +17,15 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
     <span>Primiešavate aj vy štipku soli do sirupu?</span>
 </nav>
 
-<!-- Zahlavie temy: nazov, udaje a tlacidla -->
-<section class="card category-header">
-    <!-- Moderator menu by bolo tu napravo, ale je skryte (role zatial nemame) -->
-    <h1>Primiešavate aj vy štipku soli do sirupu?</h1>
-    <p class="category-meta">
-        Založil <a href="<?= $link->url('profile.index') ?>">Jožo</a>
-        <time datetime="2026-10-20">20. 10. 2026</time> · 3 odpovede · 214 zobrazení
-    </p>
-
-    <div class="topics-toolbar topic-toolbar">
-        <div class="topic-buttons">
-            <a href="<?= $replyUrl ?>" class="btn btn-primary">Odpovedať</a>
-            <a href="<?= $actionUrl ?>" class="btn">Sledovať tému</a>
-        </div>
-        <!-- Stranka je zatial len jedna -->
-        <nav class="pagination">
-            <a href="#" class="active">1</a>
-        </nav>
-    </div>
-</section>
-
-<!-- Zoznam prispevkov -->
-<div class="card section-box">
-    <div class="section-title posts-head">
-        <span class="posts-head-author">Autor</span>
-        <span>Príspevok</span>
-        <button type="button" class="btn">Zoradiť podľa</button>
+<!-- Tema: nazov a uvodny prispevok autora su jeden blok -->
+<article class="card section-box post-first" id="prispevok-1">
+    <div class="category-header topic-title">
+        <!-- Moderator menu by bolo tu napravo, ale je skryte (role zatial nemame) -->
+        <h1>Primiešavate aj vy štipku soli do sirupu?</h1>
+        <p class="category-meta">3 odpovede · 214 zobrazení</p>
     </div>
 
-    <!-- Prvy prispevok od autora temy je jemne zvyrazneny -->
-    <article class="post post-first" id="prispevok-1">
+    <div class="post">
         <div class="post-author">
             <img src="<?= $link->asset('images/logo.svg') ?>" alt="Profilová fotka – Jožo" width="64" height="64" class="avatar">
             <div>
@@ -75,7 +53,28 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
                 </div>
             </div>
         </div>
-    </article>
+    </div>
+</article>
+
+<!-- Tlacidla k teme a strankovanie -->
+<div class="topics-toolbar">
+    <div class="topic-buttons">
+        <a href="<?= $replyUrl ?>" class="btn btn-primary">Odpovedať</a>
+        <a href="<?= $actionUrl ?>" class="btn">Sledovať tému</a>
+    </div>
+    <!-- Stranka je zatial len jedna -->
+    <nav class="pagination topic-pagination">
+        <a href="#" class="active">1</a>
+    </nav>
+</div>
+
+<!-- Zoznam odpovedi -->
+<div class="card section-box">
+    <div class="section-title posts-head">
+        <span class="posts-head-author">Autor</span>
+        <span>Príspevok</span>
+        <button type="button" class="btn">Zoradiť podľa</button>
+    </div>
 
     <article class="post" id="prispevok-2">
         <div class="post-author">
