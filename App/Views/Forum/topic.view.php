@@ -76,4 +76,99 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
             </div>
         </div>
     </article>
+
+    <article class="post" id="prispevok-2">
+        <div class="post-author">
+            <img src="<?= $link->asset('images/logo.svg') ?>" alt="Profilová fotka – Fero" width="64" height="64" class="avatar">
+            <div>
+                <h2><a href="<?= $link->url('profile.index') ?>">Fero</a></h2>
+                <p class="muted">Začínajúci včelár · 28 príspevkov</p>
+            </div>
+        </div>
+        <div class="post-body">
+            <div class="post-head">
+                <time datetime="2026-10-20T20:15">20. 10. 2026, 20:15</time>
+                <a href="#prispevok-2">#2</a>
+            </div>
+            <p>Ja soľ nedávam, kŕmim len čistým sirupom a včelám nič nechýba.</p>
+            <div class="post-foot">
+                <span class="muted">Ďakuje: Jožo</span>
+                <div class="post-actions">
+                    <a href="<?= $actionUrl ?>" class="btn">Ďakujem (1)</a>
+                    <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
+                    <button type="button" class="btn" aria-label="Ďalšie možnosti">⋯</button>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <article class="post" id="prispevok-3">
+        <div class="post-author">
+            <img src="<?= $link->asset('images/logo.svg') ?>" alt="Profilová fotka – Jožo" width="64" height="64" class="avatar">
+            <div>
+                <h2><a href="<?= $link->url('profile.index') ?>">Jožo</a></h2>
+                <span class="badge">Autor témy</span>
+                <span class="badge">Moderátor</span>
+                <p class="muted">Skúsený včelár · 340 príspevkov</p>
+            </div>
+        </div>
+        <div class="post-body">
+            <div class="post-head">
+                <time datetime="2026-10-21T09:30">21. 10. 2026, 9:30</time>
+                <a href="#prispevok-3">#3</a>
+            </div>
+            <p>Dnes ráno som skúsil prvú várku, takto vyzerá kŕmidlo aj sirup.</p>
+            <!-- Prilozene fotky - zatial sive stvorce, rovnako ako na uvodnej stranke -->
+            <div class="gallery-mini">
+                <span class="photo"></span>
+                <span class="photo"></span>
+            </div>
+            <div class="post-foot">
+                <span class="muted">Ďakuje: Anka</span>
+                <div class="post-actions">
+                    <a href="<?= $actionUrl ?>" class="btn">Ďakujem (1)</a>
+                    <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
+                    <button type="button" class="btn" aria-label="Ďalšie možnosti">⋯</button>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <article class="post" id="prispevok-4">
+        <div class="post-author">
+            <!-- Anka nema profilovu fotku - namiesto nej je prve pismeno mena -->
+            <span class="avatar-letter">A</span>
+            <div>
+                <h2><a href="<?= $link->url('profile.index') ?>">Anka</a></h2>
+                <p class="muted">Včelárka · 112 príspevkov</p>
+            </div>
+        </div>
+        <div class="post-body">
+            <div class="post-head">
+                <time datetime="2026-10-21T17:05">21. 10. 2026, 17:05</time>
+                <a href="#prispevok-4">#4</a>
+            </div>
+            <blockquote class="post-quote">
+                <strong>Jožo napísal:</strong>
+                Koľko soli dávate na liter sirupu?
+            </blockquote>
+            <p>Ja dávam naozaj len štipku na päť litrov. Viac by som nedávala, včelám to škodí.</p>
+            <div class="post-foot">
+                <span class="muted">Ďakujú: Jožo, Fero</span>
+                <div class="post-actions">
+                    <a href="<?= $actionUrl ?>" class="btn">Ďakujem (2)</a>
+                    <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
+                    <button type="button" class="btn" aria-label="Ďalšie možnosti">⋯</button>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+
+<!-- Pocet prispevkov a strankovanie pod zoznamom -->
+<div class="topics-toolbar">
+    <span class="muted">Zobrazené príspevky 1–4 zo 4</span>
+    <nav class="pagination topic-pagination">
+        <a href="#" class="active">1</a>
+    </nav>
 </div>

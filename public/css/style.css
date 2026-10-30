@@ -673,7 +673,8 @@ a.btn:hover {
   margin-bottom: 0;
 }
 
-.topic-toolbar .pagination {
+.topic-toolbar .pagination,
+.topic-pagination {
   margin-top: 0;
 }
 
@@ -756,6 +757,35 @@ a.btn:hover {
 
 .post-body p {
   margin: 0 0 12px;
+}
+
+/* Nahlady fotiek v prispevku - odsadenie od paticky pod nimi */
+.post-body .gallery-mini {
+  margin-bottom: 12px;
+}
+
+/* Citat z ineho prispevku - odliseny blok s medovym okrajom vlavo */
+.post-quote {
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  background-color: #faf6ef;
+  border-left: 3px solid #f08a1d;
+  color: #555;
+}
+
+/* Namiesto chybajucej fotky kruh s prvym pismenom mena (rovnaka velkost ako fotka) */
+.avatar-letter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: #ece0cb;
+  color: #6b5a3a;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 /* Paticka prispevku: kto dakuje vlavo, tlacidla vpravo */
