@@ -803,6 +803,27 @@ a.btn:hover {
   gap: 8px;
 }
 
+/* Formular na odpoved - popis, textove pole a tlacidlo pod sebou */
+.reply-form label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.reply-form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.reply-form .btn {
+  min-height: 44px;
+}
+
 /* --- Responzivita: mobil a uzke obrazovky --- */
 @media (max-width: 768px) {
   /* Hlavicka sa zalomi do stlpca */

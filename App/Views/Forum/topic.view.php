@@ -172,3 +172,15 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
         <a href="#" class="active">1</a>
     </nav>
 </div>
+
+<!-- Formular na odpoved vidia len prihlaseni. Zatial je len vizualny, odosielanie pribudne s databazou. -->
+<?php if ($user->isLoggedIn()) { ?>
+    <section class="card reply-form" id="odpoved">
+        <h2>Napísať odpoveď</h2>
+        <form>
+            <label for="reply-text">Text odpovede</label>
+            <textarea id="reply-text" rows="5"></textarea>
+            <button type="button" class="btn btn-primary">Odoslať odpoveď</button>
+        </form>
+    </section>
+<?php } ?>
