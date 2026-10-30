@@ -184,3 +184,38 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
         </form>
     </section>
 <?php } ?>
+
+<!-- Podobne temy z tej istej sekcie - tabulka ako vo vypise fora -->
+<section class="card section-box">
+    <h2 class="section-title">Podobné témy</h2>
+    <div class="section-body">
+        <table class="forum-table">
+            <thead>
+            <tr>
+                <th>Téma</th>
+                <th class="count">Odpovede</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><a href="<?= $link->url('forum.topic') ?>">Som zlý človek, ak nemám rád včely?</a></td>
+                <td class="count"><span class="badge">12</span></td>
+            </tr>
+            <tr>
+                <td><a href="<?= $link->url('forum.topic') ?>">Odporučíte spoľahlivý medomet?</a></td>
+                <td class="count"><span class="badge">0</span></td>
+            </tr>
+            <tr>
+                <td><a href="<?= $link->url('forum.topic') ?>">Najlepšie miesto na úľ v záhrade</a></td>
+                <td class="count"><span class="badge">7</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Spodna info lista - rovnaka ako na stranke fora, navyse pocet ludi v teme -->
+<div class="info-bar">
+    <span>Aktuálne je prihlásených: 26 užívateľov · Tému si práve prezerajú: 3</span>
+    <span>Meniny má dnes: Adrián</span>
+</div>
