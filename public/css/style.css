@@ -485,7 +485,9 @@ tbody tr:nth-child(even) {
 /* Tlacidla v profile aspon 44 px vysoke - pohodlne kliknutie aj na mobile */
 .profile-actions .btn,
 .profile-toolbar .btn,
-.topic-buttons .btn {
+.topic-buttons .btn,
+.posts-head .btn,
+.post-actions .btn {
   min-height: 44px;
 }
 
@@ -681,6 +683,96 @@ a.btn:hover {
   gap: 8px;
 }
 
+/* Hlavicka panela s prispevkami: nazvy stlpcov a vpravo tlacidlo Zoradit */
+.posts-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-weight: bold;
+}
+
+/* Rovnaka sirka ako lava cast prispevku, aby nazvy sedeli nad stlpcami */
+.posts-head-author {
+  width: 180px;
+}
+
+/* margin-left: auto odtlaci tlacidlo uplne doprava */
+.posts-head .btn {
+  margin-left: auto;
+}
+
+/* Prispevok - vlavo autor, vpravo obsah */
+.post {
+  display: flex;
+  border-bottom: 1px solid #e0d8cc;
+}
+
+.post:last-child {
+  border-bottom: none;
+}
+
+/* Lava cast s autorom ma pevnu sirku, nezmensuje sa */
+.post-author {
+  width: 196px;
+  flex-shrink: 0;
+  padding: 16px;
+  border-right: 1px solid #eee;
+}
+
+.post-author h2 {
+  margin: 8px 0 6px;
+  font-size: 16px;
+}
+
+.post-author p {
+  margin: 6px 0 0;
+}
+
+/* Prvy prispevok v teme - ine pozadie autora a vyraznejsi okraj */
+.post-first {
+  border-left: 3px solid #f08a1d;
+}
+
+.post-first .post-author {
+  background-color: #faf6ef;
+}
+
+/* Prava cast s obsahom zaberie zvysok sirky */
+.post-body {
+  flex: 1;
+  /* min-width: 0 dovoli obsahu zmensit sa, aby na uzkych obrazovkach nepretiekol */
+  min-width: 0;
+  padding: 16px;
+}
+
+/* Datum vlavo, poradove cislo vpravo */
+.post-head {
+  display: flex;
+  justify-content: space-between;
+  color: #777;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.post-body p {
+  margin: 0 0 12px;
+}
+
+/* Paticka prispevku: kto dakuje vlavo, tlacidla vpravo */
+.post-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.post-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 /* --- Responzivita: mobil a uzke obrazovky --- */
 @media (max-width: 768px) {
   /* Hlavicka sa zalomi do stlpca */
@@ -709,6 +801,29 @@ a.btn:hover {
   .footer-inner {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  /* Prispevok: autor nad textom ako kompaktny riadok (fotka vedla mena) */
+  .post {
+    flex-direction: column;
+  }
+
+  .post-author {
+    width: auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-right: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .post-author h2 {
+    margin-top: 0;
+  }
+
+  /* Nazvy stlpcov nad prispevkami na mobile nedavaju zmysel, kedze su pod sebou */
+  .posts-head-author {
+    display: none;
   }
 
   /* Statistiky profilu v dvoch radoch po dvoch */
