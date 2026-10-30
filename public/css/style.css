@@ -14,7 +14,7 @@ body {
   /* Pozadie celej stranky: hexagonalny vzor (vceli plast) z Hero Patterns na teplom
      kremovom podklade. Vzor sa donekonecna opakuje; v strede ho prekryva obsah (main).
      background-size zvacsuje dlazdicu, takze sestuholniky su vacsie. */
-  background-color: #f3e9dd;
+  background-color: #e6d9c4;
   background-image: url("../images/honeycomb.svg");
   background-size: 72px auto;
   line-height: 1.5;
@@ -28,7 +28,7 @@ body {
 /* Centralny pas s obsahom ostava cisty - sestuholniky vidno len po jeho bokoch.
    flex: 1 ho roztiahne, takze vyplni priestor az po paticku. */
 main {
-  background-color: #faf7f2;
+  background-color: #f1e9db;
   flex: 1;
 }
 
@@ -102,7 +102,7 @@ a:hover {
 
 /* --- Hero --- */
 .hero {
-  background-color: #ede3d5;
+  background-color: #e6d9c4;
   border-radius: 6px;
   padding: 24px;
   margin: 20px 0;
@@ -135,7 +135,7 @@ a:hover {
 /* Karta - zakladny obsahovy blok */
 .card {
   background-color: #ffffff;
-  border: 1px solid #e0d8cc;
+  border: 1px solid #d0c3ad;
   border-radius: 6px;
   padding: 16px;
   margin-bottom: 20px;
@@ -219,8 +219,13 @@ input[type="search"] {
 }
 
 /* --- Stranka fora --- */
+/* Omrvinkova navigacia vo vlastnom boxe - rovnaky ramik a zaoblenie ako karta */
 .breadcrumb {
   margin: 16px 0;
+  padding: 10px 16px;
+  background-color: #ffffff;
+  border: 1px solid #d0c3ad;
+  border-radius: 6px;
   color: #666;
 }
 
@@ -279,7 +284,7 @@ input[type="search"] {
    s nazvom prirodzene siaha az po okraje; obsah dostane odsadenie az cez .section-body.
    Vyraznejsi ramik, aby sekcia posobila uzavreto. */
 .section-box {
-  border-color: #d8cdbb;
+  border-color: #d0c3ad;
   padding: 0;
 }
 
@@ -287,8 +292,8 @@ input[type="search"] {
 .section-title {
   margin: 0;
   padding: 10px 16px;
-  background-color: #f3e9dd;
-  border-bottom: 1px solid #e0d8cc;
+  background-color: #e6d9c4;
+  border-bottom: 1px solid #d0c3ad;
   border-radius: 6px 6px 0 0; /* zaoblenie len hore, rovnako ako karta */
   color: #2f5d3a;
   font-size: 16px;
@@ -684,11 +689,15 @@ a.btn:hover {
   gap: 8px;
 }
 
-/* Hlavicka panela s prispevkami: nazvy stlpcov a vpravo tlacidlo Zoradit */
+/* Pruh nad odpovedami: nazvy stlpcov a vpravo tlacidlo Zoradit.
+   Je to samostatny box, od prvej odpovede ho oddeluje medzera. */
 .posts-head {
   display: flex;
   align-items: center;
   gap: 16px;
+  margin-bottom: 8px;
+  border: 1px solid #d0c3ad;
+  border-radius: 6px;
   font-weight: bold;
 }
 
@@ -705,11 +714,19 @@ a.btn:hover {
 /* Prispevok - vlavo autor, vpravo obsah */
 .post {
   display: flex;
-  border-bottom: 1px solid #e0d8cc;
 }
 
-.post:last-child {
-  border-bottom: none;
+/* Kazda odpoved je samostatny box s medzerou pod nim */
+.posts-list .post {
+  margin-bottom: 8px;
+  background-color: #ffffff;
+  border: 1px solid #d0c3ad;
+  border-radius: 6px;
+}
+
+/* Striedanie farby odpovedi, aby sa dali lahsie rozlisit (rovnako ako riadky tabuliek) */
+.posts-list .post:nth-of-type(even) {
+  background-color: #faf6ef;
 }
 
 /* Lava cast s autorom ma pevnu sirku, nezmensuje sa */
@@ -744,15 +761,20 @@ a.btn:hover {
   /* min-width: 0 dovoli obsahu zmensit sa, aby na uzkych obrazovkach nepretiekol */
   min-width: 0;
   padding: 16px;
+  /* Hlavicka, text a paticka pod sebou - paticku potom mozeme odtlacit na spodok */
+  display: flex;
+  flex-direction: column;
 }
 
-/* Datum vlavo, poradove cislo vpravo */
+/* Datum vlavo, poradove cislo vpravo, ciara oddeluje hlavicku od textu */
 .post-head {
   display: flex;
   justify-content: space-between;
   color: #777;
   font-size: 13px;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eee;
 }
 
 .post-body p {
@@ -788,13 +810,17 @@ a.btn:hover {
   font-weight: bold;
 }
 
-/* Paticka prispevku: kto dakuje vlavo, tlacidla vpravo */
+/* Paticka prispevku: kto dakuje vlavo, tlacidla vpravo.
+   margin-top: auto ju odtlaci na spodok prispevku, ciara ju oddeluje od textu. */
 .post-foot {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #eee;
 }
 
 .post-actions {

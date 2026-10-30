@@ -17,6 +17,18 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
     <span>Primiešavate aj vy štipku soli do sirupu?</span>
 </nav>
 
+<!-- Tlacidla k teme a strankovanie -->
+<div class="topics-toolbar">
+    <div class="topic-buttons">
+        <a href="<?= $replyUrl ?>" class="btn btn-primary">Odpovedať</a>
+        <a href="<?= $actionUrl ?>" class="btn">Sledovať tému</a>
+    </div>
+    <!-- Stranka je zatial len jedna -->
+    <nav class="pagination topic-pagination">
+        <a href="#" class="active">1</a>
+    </nav>
+</div>
+
 <!-- Tema: nazov a uvodny prispevok autora su jeden blok -->
 <article class="card section-box post-first" id="prispevok-1">
     <div class="category-header topic-title">
@@ -56,20 +68,8 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
     </div>
 </article>
 
-<!-- Tlacidla k teme a strankovanie -->
-<div class="topics-toolbar">
-    <div class="topic-buttons">
-        <a href="<?= $replyUrl ?>" class="btn btn-primary">Odpovedať</a>
-        <a href="<?= $actionUrl ?>" class="btn">Sledovať tému</a>
-    </div>
-    <!-- Stranka je zatial len jedna -->
-    <nav class="pagination topic-pagination">
-        <a href="#" class="active">1</a>
-    </nav>
-</div>
-
-<!-- Zoznam odpovedi -->
-<div class="card section-box">
+<!-- Zoznam odpovedi - pruh s nazvami stlpcov a pod nim kazda odpoved ako samostatny box -->
+<div class="posts-list">
     <div class="section-title posts-head">
         <span class="posts-head-author">Autor</span>
         <span>Príspevok</span>
@@ -164,12 +164,18 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
     </article>
 </div>
 
-<!-- Pocet prispevkov a strankovanie pod zoznamom -->
+<!-- Rovnake tlacidla aj pod zoznamom, aby sa po docitani nemuselo rolovat hore -->
 <div class="topics-toolbar">
-    <span class="muted">Zobrazené príspevky 1–4 zo 4</span>
-    <nav class="pagination topic-pagination">
-        <a href="#" class="active">1</a>
-    </nav>
+    <div class="topic-buttons">
+        <a href="<?= $replyUrl ?>" class="btn btn-primary">Odpovedať</a>
+        <a href="<?= $actionUrl ?>" class="btn">Sledovať tému</a>
+    </div>
+    <div class="sort">
+        <span class="muted">Zobrazené príspevky 1–4 zo 4</span>
+        <nav class="pagination topic-pagination">
+            <a href="#" class="active">1</a>
+        </nav>
+    </div>
 </div>
 
 <!-- Formular na odpoved vidia len prihlaseni. Zatial je len vizualny, odosielanie pribudne s databazou. -->
