@@ -2,6 +2,10 @@
 
 /** @var \Framework\Support\LinkGenerator $link */
 /** @var \App\Models\Topic[] $topics */
+/** @var \Framework\Auth\AppUser $user */
+
+// Neprihlaseneho posle tlacidlo Pridat novu temu na Login (rovnako ako v detaile temy)
+$addUrl = $user->isLoggedIn() ? $link->url('topic.add') : App\Configuration::LOGIN_URL;
 ?>
 <!-- Stranka kategorie fora "Volna debata" - obsah prevzaty z html/forum.html (Uloha 4, generovane s pomocou AI a upravene). -->
 
@@ -65,7 +69,7 @@
 
 <!-- Nastroje nad temami: pridanie novej temy + zoradenie -->
 <div class="topics-toolbar">
-    <button type="button" class="btn btn-primary">Pridať novú tému</button>
+    <a href="<?= $addUrl ?>" class="btn btn-primary">Pridať novú tému</a>
     <div class="sort">
         <span class="sort-label">Zoradiť podľa:</span>
         <button type="button" class="btn">Dátum</button>
