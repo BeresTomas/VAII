@@ -835,9 +835,11 @@ a.btn:hover {
   margin-bottom: 6px;
 }
 
+.reply-form input[type="text"],
 .reply-form textarea {
   display: block;
   width: 100%;
+  min-height: 44px;
   margin-bottom: 12px;
   padding: 8px;
   border: 1px solid #ccc;
@@ -848,6 +850,16 @@ a.btn:hover {
 
 .reply-form .btn {
   min-height: 44px;
+}
+
+/* Chybove hlasenia formulara temy (zo servera). Pridane s pomocou AI (Claude). */
+.form-errors {
+  margin: 0 0 12px;
+  padding: 10px 10px 10px 30px;
+  border: 1px solid #c62828;
+  border-radius: 4px;
+  background-color: #fdecea;
+  color: #c62828;
 }
 
 /* --- Responzivita: mobil a uzke obrazovky --- */
