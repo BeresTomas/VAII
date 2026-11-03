@@ -829,6 +829,53 @@ a.btn:hover {
   gap: 8px;
 }
 
+/* Menu ⋯ pri prispevku. Pridane s pomocou AI (Claude). */
+/* Obal menu - zoznam moznosti sa umiestni k nemu */
+.post-menu {
+  position: relative;
+}
+
+/* Tlacidlo ⋯ vyzera ako ostatne tlacidla, bez trojuholnika, ktory ma summary normalne */
+.post-menu summary {
+  display: inline-flex;
+  align-items: center;
+  list-style: none;
+}
+
+.post-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Zoznam moznosti sa zobrazi pod tlacidlom, zarovnany k jeho pravemu okraju */
+.post-menu-list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 10;
+  min-width: 190px;
+  margin: 4px 0 0;
+  padding: 4px 0;
+  list-style: none;
+  background-color: #ffffff;
+  border: 1px solid #d0c3ad;
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Kazda moznost je cely riadok s vyskou aspon 44 px (pohodlne kliknutie aj na mobile) */
+.post-menu-list a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  color: #333;
+}
+
+.post-menu-list a:hover {
+  background-color: #f1e9db;
+  text-decoration: none;
+}
+
 /* Formular na odpoved - popis, textove pole a tlacidlo pod sebou */
 .reply-form label {
   display: block;

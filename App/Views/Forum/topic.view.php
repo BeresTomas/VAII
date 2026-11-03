@@ -60,14 +60,23 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
                 <div class="post-actions">
                     <a href="<?= $actionUrl ?>" class="btn">Ďakujem (5)</a>
                     <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
-                    <!-- Upravit a zmazat temu moze len prihlaseny (role zatial nemame). Pridane s pomocou AI (Claude).
-                         confirm() sa pred zmazanim opyta, ci to pouzivatel naozaj chce - Zrusit odkaz zastavi. -->
-                    <?php if ($user->isLoggedIn()) { ?>
-                        <a href="<?= $link->url('topic.edit', ['id' => $topic->getId()]) ?>" class="btn">Upraviť</a>
-                        <a href="<?= $link->url('topic.delete', ['id' => $topic->getId()]) ?>" class="btn"
-                           onclick="return confirm('Naozaj chcete zmazať túto tému?')">Zmazať</a>
-                    <?php } ?>
-                    <button type="button" class="btn" aria-label="Ďalšie možnosti">⋯</button>
+                    <!-- Menu ⋯ - details/summary sa otvori a zatvori klikom na ⋯.
+                         Rovnake menu (bez Upravit a Zmazat) je aj pri odpovediach. Pridane s pomocou AI (Claude). -->
+                    <details class="post-menu">
+                        <summary class="btn" aria-label="Ďalšie možnosti">⋯</summary>
+                        <ul class="post-menu-list">
+                            <li><a href="<?= $replyUrl ?>">Citovať</a></li>
+                            <li><a href="#prispevok-1">Odkaz na príspevok</a></li>
+                            <li><a href="<?= $actionUrl ?>">Nahlásiť</a></li>
+                            <!-- Upravit a zmazat temu moze len prihlaseny (role zatial nemame).
+                                 confirm() sa pred zmazanim opyta, ci to pouzivatel naozaj chce - Zrusit odkaz zastavi. -->
+                            <?php if ($user->isLoggedIn()) { ?>
+                                <li><a href="<?= $link->url('topic.edit', ['id' => $topic->getId()]) ?>">Upraviť</a></li>
+                                <li><a href="<?= $link->url('topic.delete', ['id' => $topic->getId()]) ?>"
+                                       onclick="return confirm('Naozaj chcete zmazať túto tému?')">Zmazať</a></li>
+                            <?php } ?>
+                        </ul>
+                    </details>
                 </div>
             </div>
         </div>
@@ -101,7 +110,14 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
                 <div class="post-actions">
                     <a href="<?= $actionUrl ?>" class="btn">Ďakujem (1)</a>
                     <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
-                    <button type="button" class="btn" aria-label="Ďalšie možnosti">⋯</button>
+                    <details class="post-menu">
+                        <summary class="btn" aria-label="Ďalšie možnosti">⋯</summary>
+                        <ul class="post-menu-list">
+                            <li><a href="<?= $replyUrl ?>">Citovať</a></li>
+                            <li><a href="#prispevok-2">Odkaz na príspevok</a></li>
+                            <li><a href="<?= $actionUrl ?>">Nahlásiť</a></li>
+                        </ul>
+                    </details>
                 </div>
             </div>
         </div>
@@ -133,7 +149,14 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
                 <div class="post-actions">
                     <a href="<?= $actionUrl ?>" class="btn">Ďakujem (1)</a>
                     <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
-                    <button type="button" class="btn" aria-label="Ďalšie možnosti">⋯</button>
+                    <details class="post-menu">
+                        <summary class="btn" aria-label="Ďalšie možnosti">⋯</summary>
+                        <ul class="post-menu-list">
+                            <li><a href="<?= $replyUrl ?>">Citovať</a></li>
+                            <li><a href="#prispevok-3">Odkaz na príspevok</a></li>
+                            <li><a href="<?= $actionUrl ?>">Nahlásiť</a></li>
+                        </ul>
+                    </details>
                 </div>
             </div>
         </div>
@@ -163,7 +186,14 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
                 <div class="post-actions">
                     <a href="<?= $actionUrl ?>" class="btn">Ďakujem (2)</a>
                     <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
-                    <button type="button" class="btn" aria-label="Ďalšie možnosti">⋯</button>
+                    <details class="post-menu">
+                        <summary class="btn" aria-label="Ďalšie možnosti">⋯</summary>
+                        <ul class="post-menu-list">
+                            <li><a href="<?= $replyUrl ?>">Citovať</a></li>
+                            <li><a href="#prispevok-4">Odkaz na príspevok</a></li>
+                            <li><a href="<?= $actionUrl ?>">Nahlásiť</a></li>
+                        </ul>
+                    </details>
                 </div>
             </div>
         </div>
