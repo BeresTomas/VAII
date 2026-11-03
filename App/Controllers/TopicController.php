@@ -55,7 +55,25 @@ class TopicController extends BaseController
     }
 
     /**
-     * Saves the topic from the form into the database.
+     * Shows the form filled with the data of an existing topic.
+     *
+     * @param Request $request
+     * @return Response
+     * @throws HttpException
+     */
+    public function edit(Request $request): Response
+    {
+        $id = (int)$request->value('id');
+        $topic = Topic::getOne($id);
+
+        if (is_null($topic)) {
+            throw new HttpException(404);
+        }
+        return $this->html(compact('topic'));
+    }
+
+    /**
+     * Saves the topic from the form into the database (a new one or an edited one).
      *
      * @param Request $request
      * @return Response
@@ -63,8 +81,19 @@ class TopicController extends BaseController
      */
     public function save(Request $request): Response
     {
-        $topic = new Topic();
-        $topic->setCreatedAt(date('Y-m-d H:i:s'));
+        // Ak formular poslal id, upravujeme existujucu temu, inak vytvarame novu
+        $id = (int)$request->value('id');
+
+        if ($id > 0) {
+            $topic = Topic::getOne($id);
+            if (is_null($topic)) {
+                throw new HttpException(404);
+            }
+        } else {
+            $topic = new Topic();
+            // Datum zalozenia sa nastavi len pri novej teme, pri uprave zostane povodny
+            $topic->setCreatedAt(date('Y-m-d H:i:s'));
+        }
 
         // (string) zmeni null na prazdny text, trim odstrani medzery na zaciatku a konci
         $topic->setTitle(trim((string)$request->value('title')));
@@ -73,7 +102,7 @@ class TopicController extends BaseController
         $formErrors = $this->formErrors($topic);
         if (count($formErrors) > 0) {
             // Formular sa zobrazi znova aj s chybami a s tym, co pouzivatel uz napisal
-            return $this->html(compact('topic', 'formErrors'), 'add');
+            return $this->html(compact('topic', 'formErrors'), ($id > 0) ? 'edit' : 'add');
         }
 
         try {

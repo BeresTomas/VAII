@@ -60,6 +60,10 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
                 <div class="post-actions">
                     <a href="<?= $actionUrl ?>" class="btn">Ďakujem (5)</a>
                     <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
+                    <!-- Upravit temu moze len prihlaseny (role zatial nemame). Pridane s pomocou AI (Claude). -->
+                    <?php if ($user->isLoggedIn()) { ?>
+                        <a href="<?= $link->url('topic.edit', ['id' => $topic->getId()]) ?>" class="btn">Upraviť</a>
+                    <?php } ?>
                     <button type="button" class="btn" aria-label="Ďalšie možnosti">⋯</button>
                 </div>
             </div>
