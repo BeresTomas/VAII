@@ -39,9 +39,9 @@
         <section class="card">
             <h2>Trending Témy</h2>
             <ul class="topic-list">
-                <li><a href="<?= $link->url('forum.topic') ?>">Primiešavate aj vy štipku soli do sirupu?</a></li>
-                <li><a href="<?= $link->url('forum.topic') ?>">Som zlý človek, ak nemám rád včely?</a></li>
-                <li><a href="<?= $link->url('forum.topic') ?>">Najlepšie miesto na úľ v záhrade</a></li>
+                <li><a href="<?= $link->url('forum.topic', ['id' => 1]) ?>">Primiešavate aj vy štipku soli do sirupu?</a></li>
+                <li><a href="<?= $link->url('forum.topic', ['id' => 2]) ?>">Som zlý človek, ak nemám rád včely?</a></li>
+                <li><a href="<?= $link->url('forum.topic', ['id' => 4]) ?>">Najlepšie miesto na úľ v záhrade</a></li>
             </ul>
         </section>
     </div>

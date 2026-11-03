@@ -2,19 +2,20 @@
 
 /** @var \Framework\Support\LinkGenerator $link */
 /** @var \Framework\Auth\AppUser $user */
+/** @var \App\Models\Topic $topic */
 
 // Neprihlaseneho posielaju tlacidla Odpovedat, Dakujem a Sledovat na Login
 $replyUrl = $user->isLoggedIn() ? '#odpoved' : App\Configuration::LOGIN_URL;
 $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
 ?>
-<!-- Detail temy - staticky obsah, neskor sa nacita z databazy.
+<!-- Detail temy - nazov, datum a text uvodneho prispevku su z DB, odpovede su zatial staticke.
      Generovane s pomocou AI (Claude) a upravene. -->
 
 <!-- Omrvinkova navigacia -->
 <nav class="breadcrumb">
     <a href="<?= $link->url('forum.index') ?>">Fórum</a> /
     <a href="<?= $link->url('forum.index') ?>">Voľná debata</a> /
-    <span>Primiešavate aj vy štipku soli do sirupu?</span>
+    <span><?= e($topic->getTitle()) ?></span>
 </nav>
 
 <!-- Tlacidla k teme a strankovanie -->
@@ -33,7 +34,7 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
 <article class="card section-box post-first" id="prispevok-1">
     <div class="category-header topic-title">
         <!-- Moderator menu by bolo tu napravo, ale je skryte (role zatial nemame) -->
-        <h1>Primiešavate aj vy štipku soli do sirupu?</h1>
+        <h1><?= e($topic->getTitle()) ?></h1>
         <p class="category-meta">3 odpovede · 214 zobrazení</p>
     </div>
 
@@ -49,13 +50,11 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
         </div>
         <div class="post-body">
             <div class="post-head">
-                <time datetime="2026-10-20T18:42">20. 10. 2026, 18:42</time>
+                <time datetime="<?= date('Y-m-d\TH:i', strtotime($topic->getCreatedAt())) ?>"><?= date('j. n. Y, G:i', strtotime($topic->getCreatedAt())) ?></time>
                 <a href="#prispevok-1">#1</a>
             </div>
-            <p>
-                Čítal som, že štipka soli v cukrovom sirupe prospieva včelám, lebo im dodá minerály.
-                Skúšal to už niekto z vás? Koľko soli dávate na liter sirupu a pozorovali ste nejaký rozdiel?
-            </p>
+            <!-- nl2br zmeni konce riadkov z formulara na <br> -->
+            <p><?= nl2br(e($topic->getText())) ?></p>
             <div class="post-foot">
                 <span class="muted">Ďakujú: Anka, Fero a 3 ďalší</span>
                 <div class="post-actions">
@@ -203,15 +202,15 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
             </thead>
             <tbody>
             <tr>
-                <td><a href="<?= $link->url('forum.topic') ?>">Som zlý človek, ak nemám rád včely?</a></td>
+                <td><a href="<?= $link->url('forum.topic', ['id' => 2]) ?>">Som zlý človek, ak nemám rád včely?</a></td>
                 <td class="count"><span class="badge">12</span></td>
             </tr>
             <tr>
-                <td><a href="<?= $link->url('forum.topic') ?>">Odporučíte spoľahlivý medomet?</a></td>
+                <td><a href="<?= $link->url('forum.topic', ['id' => 3]) ?>">Odporučíte spoľahlivý medomet?</a></td>
                 <td class="count"><span class="badge">0</span></td>
             </tr>
             <tr>
-                <td><a href="<?= $link->url('forum.topic') ?>">Najlepšie miesto na úľ v záhrade</a></td>
+                <td><a href="<?= $link->url('forum.topic', ['id' => 4]) ?>">Najlepšie miesto na úľ v záhrade</a></td>
                 <td class="count"><span class="badge">7</span></td>
             </tr>
             </tbody>

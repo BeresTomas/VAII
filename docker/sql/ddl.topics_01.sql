@@ -20,4 +20,7 @@ VALUES (1, 'Primiešavate aj vy štipku soli do sirupu?',
         '2026-10-15 20:10:00'),
        (3, 'Odporučíte spoľahlivý medomet?',
         'Chystám sa kúpiť nový medomet pre 20 včelstiev. Nerezový, ručný alebo elektrický? Ktorú značku máte overenú a čo by ste už druhýkrát nekúpili?',
-        '2026-10-24 09:15:00');
+        '2026-10-24 09:15:00'),
+       (4, 'Najlepšie miesto na úľ v záhrade',
+        'Na jar chcem postaviť prvý úľ do záhrady pri dome. Kam ho dať, aby mali včely ranné slnko a susedia neboli v ich letovej dráhe?',
+        '2026-10-12 16:30:00');

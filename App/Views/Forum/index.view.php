@@ -1,6 +1,7 @@
 <?php
 
 /** @var \Framework\Support\LinkGenerator $link */
+/** @var \App\Models\Topic[] $topics */
 ?>
 <!-- Stranka kategorie fora "Volna debata" - obsah prevzaty z html/forum.html (Uloha 4, generovane s pomocou AI a upravene). -->
 
@@ -86,55 +87,23 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td class="author">
-                    <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
-                    <a href="<?= $link->url('profile.index') ?>">Jožo</a>
-                </td>
-                <td>
-                    <a href="<?= $link->url('forum.topic') ?>">Primiešavate aj vy štipku soli do sirupu?</a>
-                    <div class="muted">Pridané 20. 10. 2026</div>
-                </td>
-                <td class="count"><span class="badge">3</span></td>
-                <td class="last-reply">
-                    <a href="<?= $link->url('forum.topic') ?>" class="last-reply-link">
-                        <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="24" height="24" class="avatar">
-                        <span>od Anka</span>
-                    </a>
-                    <div class="muted">21. 10. 2026</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="author">
-                    <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
-                    <a href="<?= $link->url('profile.index') ?>">Fero</a>
-                </td>
-                <td>
-                    <a href="<?= $link->url('forum.topic') ?>">Som zlý človek, ak nemám rád včely?</a>
-                    <div class="muted">Pridané 15. 10. 2026</div>
-                </td>
-                <td class="count"><span class="badge">12</span></td>
-                <td class="last-reply">
-                    <a href="<?= $link->url('forum.topic') ?>" class="last-reply-link">
-                        <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="24" height="24" class="avatar">
-                        <span>od Jožo</span>
-                    </a>
-                    <div class="muted">23. 10. 2026</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="author">
-                    <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
-                    <a href="<?= $link->url('profile.index') ?>">Anka</a>
-                </td>
-                <td>
-                    <a href="<?= $link->url('forum.topic') ?>">Odporučíte spoľahlivý medomet?</a>
-                    <div class="muted">Pridané 24. 10. 2026</div>
-                </td>
-                <td class="count"><span class="badge">0</span></td>
-                <!-- Ziadna odpoved -> posledna odpoved sa nezobrazuje -->
-                <td class="last-reply"></td>
-            </tr>
+            <!-- Riadky tem sa nacitaju z DB. Vytvorene s pomocou AI (Claude).
+                 Autor, odpovede a posledna odpoved su zatial staticke (tabulky users a posts este nemame). -->
+            <?php foreach ($topics as $topic) { ?>
+                <tr>
+                    <td class="author">
+                        <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
+                        <a href="<?= $link->url('profile.index') ?>">Jožo</a>
+                    </td>
+                    <td>
+                        <a href="<?= $link->url('forum.topic', ['id' => $topic->getId()]) ?>"><?= e($topic->getTitle()) ?></a>
+                        <div class="muted">Pridané <?= date('j. n. Y', strtotime($topic->getCreatedAt())) ?></div>
+                    </td>
+                    <td class="count"><span class="badge">0</span></td>
+                    <!-- Ziadna odpoved -> posledna odpoved sa nezobrazuje -->
+                    <td class="last-reply"></td>
+                </tr>
+            <?php } ?>
             </tbody>
         </table>
 
