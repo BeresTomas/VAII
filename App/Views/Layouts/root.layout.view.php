@@ -30,7 +30,19 @@
                 <li><a href="#">Oznamy</a></li>
                 <li><a href="#">Galéria</a></li>
                 <li><a href="#">Viac</a></li>
-                <li><a href="<?= App\Configuration::LOGIN_URL ?>" class="nav-login">Login</a></li>
+                <!-- Prihlaseny vidi profilovku a meno (preklik na profil) a Odhlasit, ostatni Login.
+                     Pridane s pomocou AI (Claude). -->
+                <?php if ($user->isLoggedIn()) { ?>
+                    <li>
+                        <a href="<?= $link->url('profile.index') ?>" class="nav-user">
+                            <img src="<?= $link->asset('images/logo.svg') ?>" alt="" width="32" height="32" class="avatar">
+                            <span><?= e($user->getName()) ?></span>
+                        </a>
+                    </li>
+                    <li><a href="<?= $link->url('auth.logout') ?>" class="nav-login">Odhlásiť</a></li>
+                <?php } else { ?>
+                    <li><a href="<?= App\Configuration::LOGIN_URL ?>" class="nav-login">Login</a></li>
+                <?php } ?>
             </ul>
         </nav>
     </div>

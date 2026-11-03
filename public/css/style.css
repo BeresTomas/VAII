@@ -86,6 +86,7 @@ a:hover {
 .main-nav ul {
   list-style: none;
   display: flex;
+  align-items: center;
   gap: 24px;
   margin: 0;
   padding: 0;
@@ -98,6 +99,13 @@ a:hover {
 
 .nav-login {
   color: #c96f10;
+}
+
+/* Profilovka a meno prihlaseneho v hlavicke vedla seba. Pridane s pomocou AI (Claude). */
+.nav-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 /* --- Hero --- */

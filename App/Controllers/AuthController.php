@@ -60,14 +60,14 @@ class AuthController extends BaseController
     /**
      * Logs out the current user.
      *
-     * This action terminates the user's session and redirects them to a view. It effectively clears any authentication
-     * tokens or session data associated with the user.
+     * This action terminates the user's session and redirects them to the home page. It effectively clears any
+     * authentication tokens or session data associated with the user.
      *
-     * @return ViewResponse The response object that renders the logout view.
+     * @return Response The response object for the redirection to the home page.
      */
     public function logout(Request $request): Response
     {
         $this->app->getAuthenticator()->logout();
-        return $this->html();
+        return $this->redirect($this->url('home.index'));
     }
 }
