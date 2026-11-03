@@ -18,6 +18,7 @@ class Topic extends Model
     protected ?string $title;
     protected ?string $text;
     protected ?string $createdAt;
+    protected ?string $author;
 
     public function getId(): ?int
     {
@@ -57,5 +58,15 @@ class Topic extends Model
     public function setCreatedAt(string $createdAt): void
     {
         $this->createdAt = $createdAt;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function setAuthor(string $author): void
+    {
+        $this->author = $author;
     }
 }

@@ -20,15 +20,30 @@ use Framework\Http\Responses\Response;
 class TopicController extends BaseController
 {
     /**
-     * Only logged-in users can manage topics. Others are redirected to the login page.
+     * A new topic can be added by any logged-in user, but only the author or the admin can edit or delete it.
+     * Users who are not logged in are redirected to the login page, others get the error 403.
      *
      * @param Request $request
      * @param string $action
      * @return bool
+     * @throws Exception
      */
     public function authorize(Request $request, string $action): bool
     {
-        return $this->user->isLoggedIn();
+        switch ($action) {
+            case 'edit':
+            case 'delete':
+                return $this->canManage($request);
+            case 'save':
+                // Ulozenie upravenej temy (ma id) moze len autor alebo admin, novu temu (bez id) kazdy prihlaseny
+                $id = (int)$request->value('id');
+                if ($id > 0) {
+                    return $this->canManage($request);
+                }
+                return $this->user->isLoggedIn();
+            default:
+                return $this->user->isLoggedIn();
+        }
     }
 
     /**
@@ -91,8 +106,9 @@ class TopicController extends BaseController
             }
         } else {
             $topic = new Topic();
-            // Datum zalozenia sa nastavi len pri novej teme, pri uprave zostane povodny
+            // Datum zalozenia a autor sa nastavia len pri novej teme, pri uprave zostanu povodne
             $topic->setCreatedAt(date('Y-m-d H:i:s'));
+            $topic->setAuthor($this->user->getName());
         }
 
         // (string) zmeni null na prazdny text, trim odstrani medzery na zaciatku a konci
@@ -135,6 +151,30 @@ class TopicController extends BaseController
             throw new HttpException(500, 'DB Chyba: ' . $e->getMessage());
         }
         return $this->redirect($this->url('forum.index'));
+    }
+
+    /**
+     * Checks if the logged-in user can edit and delete the topic with the id from the request:
+     * the admin can manage every topic, other users only their own.
+     *
+     * @param Request $request
+     * @return bool
+     * @throws Exception
+     */
+    private function canManage(Request $request): bool
+    {
+        if (!$this->user->isLoggedIn()) {
+            return false;
+        }
+        $topic = Topic::getOne((int)$request->value('id'));
+        if (is_null($topic)) {
+            return false;
+        }
+        // Roly zatial nemame, admin je testovaci ucet s menom Admin
+        if ($this->user->getName() == 'Admin') {
+            return true;
+        }
+        return $topic->getAuthor() == $this->user->getName();
     }
 
     /**

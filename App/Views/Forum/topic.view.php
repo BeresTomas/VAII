@@ -7,6 +7,10 @@
 // Neprihlaseneho posielaju tlacidla Odpovedat, Dakujem a Sledovat na Login
 $replyUrl = $user->isLoggedIn() ? '#odpoved' : App\Configuration::LOGIN_URL;
 $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
+
+// Upravit a zmazat temu moze jej autor alebo admin (rovnaka kontrola je aj v TopicController::authorize).
+// Roly zatial nemame, admin je testovaci ucet s menom Admin.
+$canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getName() == $topic->getAuthor());
 ?>
 <!-- Detail temy - nazov, datum a text uvodneho prispevku su z DB, odpovede su zatial staticke.
      Generovane s pomocou AI (Claude) a upravene. -->
@@ -40,9 +44,9 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
 
     <div class="post">
         <div class="post-author">
-            <img src="<?= $link->asset('images/logo.svg') ?>" alt="Profilová fotka – Jožo" width="64" height="64" class="avatar">
+            <img src="<?= $link->asset('images/logo.svg') ?>" alt="Profilová fotka – <?= e($topic->getAuthor()) ?>" width="64" height="64" class="avatar">
             <div>
-                <h2><a href="<?= $link->url('profile.index') ?>">Jožo</a></h2>
+                <h2><a href="<?= $link->url('profile.index') ?>"><?= e($topic->getAuthor()) ?></a></h2>
                 <span class="badge">Autor témy</span>
                 <span class="badge">Moderátor</span>
                 <p class="muted">Skúsený včelár · 340 príspevkov</p>
@@ -68,9 +72,9 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
                             <li><a href="<?= $replyUrl ?>">Citovať</a></li>
                             <li><a href="#prispevok-1">Odkaz na príspevok</a></li>
                             <li><a href="<?= $actionUrl ?>">Nahlásiť</a></li>
-                            <!-- Upravit a zmazat temu moze len prihlaseny (role zatial nemame).
+                            <!-- Upravit a zmazat temu moze jej autor alebo admin.
                                  confirm() sa pred zmazanim opyta, ci to pouzivatel naozaj chce - Zrusit odkaz zastavi. -->
-                            <?php if ($user->isLoggedIn()) { ?>
+                            <?php if ($canManage) { ?>
                                 <li><a href="<?= $link->url('topic.edit', ['id' => $topic->getId()]) ?>">Upraviť</a></li>
                                 <li><a href="<?= $link->url('topic.delete', ['id' => $topic->getId()]) ?>"
                                        onclick="return confirm('Naozaj chcete zmazať túto tému?')">Zmazať</a></li>

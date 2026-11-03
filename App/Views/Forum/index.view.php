@@ -92,12 +92,12 @@ $addUrl = $user->isLoggedIn() ? $link->url('topic.add') : App\Configuration::LOG
             </thead>
             <tbody>
             <!-- Riadky tem sa nacitaju z DB. Vytvorene s pomocou AI (Claude).
-                 Autor, odpovede a posledna odpoved su zatial staticke (tabulky users a posts este nemame). -->
+                 Odpovede a posledna odpoved su zatial staticke (tabulku posts este nemame). -->
             <?php foreach ($topics as $topic) { ?>
                 <tr>
                     <td class="author">
                         <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
-                        <a href="<?= $link->url('profile.index') ?>">Jožo</a>
+                        <a href="<?= $link->url('profile.index') ?>"><?= e($topic->getAuthor()) ?></a>
                     </td>
                     <td>
                         <a href="<?= $link->url('forum.topic', ['id' => $topic->getId()]) ?>"><?= e($topic->getTitle()) ?></a>
