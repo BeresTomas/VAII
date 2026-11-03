@@ -60,9 +60,12 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
                 <div class="post-actions">
                     <a href="<?= $actionUrl ?>" class="btn">Ďakujem (5)</a>
                     <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
-                    <!-- Upravit temu moze len prihlaseny (role zatial nemame). Pridane s pomocou AI (Claude). -->
+                    <!-- Upravit a zmazat temu moze len prihlaseny (role zatial nemame). Pridane s pomocou AI (Claude).
+                         confirm() sa pred zmazanim opyta, ci to pouzivatel naozaj chce - Zrusit odkaz zastavi. -->
                     <?php if ($user->isLoggedIn()) { ?>
                         <a href="<?= $link->url('topic.edit', ['id' => $topic->getId()]) ?>" class="btn">Upraviť</a>
+                        <a href="<?= $link->url('topic.delete', ['id' => $topic->getId()]) ?>" class="btn"
+                           onclick="return confirm('Naozaj chcete zmazať túto tému?')">Zmazať</a>
                     <?php } ?>
                     <button type="button" class="btn" aria-label="Ďalšie možnosti">⋯</button>
                 </div>

@@ -114,6 +114,30 @@ class TopicController extends BaseController
     }
 
     /**
+     * Deletes the topic and goes back to the forum page.
+     *
+     * @param Request $request
+     * @return Response
+     * @throws HttpException
+     */
+    public function delete(Request $request): Response
+    {
+        $id = (int)$request->value('id');
+        $topic = Topic::getOne($id);
+
+        if (is_null($topic)) {
+            throw new HttpException(404);
+        }
+
+        try {
+            $topic->delete();
+        } catch (Exception $e) {
+            throw new HttpException(500, 'DB Chyba: ' . $e->getMessage());
+        }
+        return $this->redirect($this->url('forum.index'));
+    }
+
+    /**
      * Checks the values of the topic before saving.
      *
      * @param Topic $topic
