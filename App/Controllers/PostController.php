@@ -21,15 +21,29 @@ use Framework\Http\Responses\Response;
 class PostController extends BaseController
 {
     /**
-     * Only logged-in users can reply. Others are redirected to the login page.
+     * Any logged-in user can reply, but only the author or the admin can edit or delete a reply.
+     * Users who are not logged in are redirected to the login page, others get the error 403.
      *
      * @param Request $request
      * @param string $action
      * @return bool
+     * @throws Exception
      */
     public function authorize(Request $request, string $action): bool
     {
-        return $this->user->isLoggedIn();
+        switch ($action) {
+            case 'edit':
+                return $this->canManage($request);
+            case 'save':
+                // Ulozenie upravenej odpovede (ma id) moze len autor alebo admin, novu odpoved (bez id) kazdy prihlaseny
+                $id = (int)$request->value('id');
+                if ($id > 0) {
+                    return $this->canManage($request);
+                }
+                return $this->user->isLoggedIn();
+            default:
+                return $this->user->isLoggedIn();
+        }
     }
 
     /**
@@ -45,7 +59,27 @@ class PostController extends BaseController
     }
 
     /**
-     * Saves a new reply from the form on the topic page and goes back to the topic.
+     * Shows the form filled with the data of an existing reply, including the topic it belongs to.
+     *
+     * @param Request $request
+     * @return Response
+     * @throws Exception
+     */
+    public function edit(Request $request): Response
+    {
+        $id = (int)$request->value('id');
+        $post = Post::getOne($id);
+
+        if (is_null($post)) {
+            throw new HttpException(404);
+        }
+        // Vsetky temy pre vyber vo formulari - odpoved sa da presunut do inej temy
+        $topics = Topic::getAll(null, [], 'title ASC');
+        return $this->html(compact('post', 'topics'));
+    }
+
+    /**
+     * Saves a reply (a new one from the topic page or an edited one) and goes back to its topic.
      *
      * @param Request $request
      * @return Response
@@ -53,9 +87,20 @@ class PostController extends BaseController
      */
     public function save(Request $request): Response
     {
-        $post = new Post();
-        $post->setCreatedAt(date('Y-m-d H:i:s'));
-        $post->setAuthor($this->user->getName());
+        // Ak formular poslal id, upravujeme existujucu odpoved, inak vytvarame novu
+        $id = (int)$request->value('id');
+
+        if ($id > 0) {
+            $post = Post::getOne($id);
+            if (is_null($post)) {
+                throw new HttpException(404);
+            }
+        } else {
+            $post = new Post();
+            // Datum a autor sa nastavia len pri novej odpovedi, pri uprave zostanu povodne
+            $post->setCreatedAt(date('Y-m-d H:i:s'));
+            $post->setAuthor($this->user->getName());
+        }
 
         // (string) zmeni null na prazdny text, (int) zmeni text, ktory nie je cislo, na 0
         $post->setText(trim((string)$request->value('text')));
@@ -65,7 +110,7 @@ class PostController extends BaseController
         if (count($formErrors) > 0) {
             // Formular sa zobrazi znova aj s chybami a s tym, co pouzivatel uz napisal
             $topics = Topic::getAll(null, [], 'title ASC');
-            return $this->html(compact('post', 'topics', 'formErrors'), 'add');
+            return $this->html(compact('post', 'topics', 'formErrors'), ($id > 0) ? 'edit' : 'add');
         }
 
         try {
@@ -75,6 +120,30 @@ class PostController extends BaseController
         }
         // Spat na temu, #odpoved-... posunie stranku rovno na novu odpoved
         return $this->redirect($this->url('forum.topic', ['id' => $post->getTopicId()]) . '#odpoved-' . $post->getId());
+    }
+
+    /**
+     * Checks if the logged-in user can edit and delete the reply with the id from the request:
+     * the admin can manage every reply, other users only their own.
+     *
+     * @param Request $request
+     * @return bool
+     * @throws Exception
+     */
+    private function canManage(Request $request): bool
+    {
+        if (!$this->user->isLoggedIn()) {
+            return false;
+        }
+        $post = Post::getOne((int)$request->value('id'));
+        if (is_null($post)) {
+            return false;
+        }
+        // Roly zatial nemame, admin je testovaci ucet s menom Admin
+        if ($this->user->getName() == 'Admin') {
+            return true;
+        }
+        return $post->getAuthor() == $this->user->getName();
     }
 
     /**

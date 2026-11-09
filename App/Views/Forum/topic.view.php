@@ -103,7 +103,11 @@ $canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getNa
     <?php } ?>
     <?php $number = 1; ?>
     <?php foreach ($posts as $post) { ?>
-        <?php $number++; ?>
+        <?php
+        $number++;
+        // Upravit a zmazat odpoved moze jej autor alebo admin (rovnaka kontrola je aj v PostController::authorize)
+        $canManagePost = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getName() == $post->getAuthor());
+        ?>
         <article class="post" id="odpoved-<?= $post->getId() ?>">
             <div class="post-author">
                 <img src="<?= $link->asset('images/logo.svg') ?>" alt="Profilová fotka – <?= e($post->getAuthor()) ?>" width="64" height="64" class="avatar">
@@ -130,6 +134,9 @@ $canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getNa
                                 <li><a href="<?= $replyUrl ?>">Citovať</a></li>
                                 <li><a href="#odpoved-<?= $post->getId() ?>">Odkaz na príspevok</a></li>
                                 <li><a href="<?= $actionUrl ?>">Nahlásiť</a></li>
+                                <?php if ($canManagePost) { ?>
+                                    <li><a href="<?= $link->url('post.edit', ['id' => $post->getId()]) ?>">Upraviť</a></li>
+                                <?php } ?>
                             </ul>
                         </details>
                     </div>
