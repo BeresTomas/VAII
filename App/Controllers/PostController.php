@@ -33,6 +33,7 @@ class PostController extends BaseController
     {
         switch ($action) {
             case 'edit':
+            case 'delete':
                 return $this->canManage($request);
             case 'save':
                 // Ulozenie upravenej odpovede (ma id) moze len autor alebo admin, novu odpoved (bez id) kazdy prihlaseny
@@ -120,6 +121,35 @@ class PostController extends BaseController
         }
         // Spat na temu, #odpoved-... posunie stranku rovno na novu odpoved
         return $this->redirect($this->url('forum.topic', ['id' => $post->getTopicId()]) . '#odpoved-' . $post->getId());
+    }
+
+    /**
+     * Deletes the reply and goes back to its topic. Deleting is allowed only with a POST request (form),
+     * so a reply cannot be deleted just by opening a link.
+     *
+     * @param Request $request
+     * @return Response
+     * @throws HttpException
+     */
+    public function delete(Request $request): Response
+    {
+        if (!$request->isPost()) {
+            throw new HttpException(405);
+        }
+
+        $id = (int)$request->value('id');
+        $post = Post::getOne($id);
+
+        if (is_null($post)) {
+            throw new HttpException(404);
+        }
+
+        try {
+            $post->delete();
+        } catch (Exception $e) {
+            throw new HttpException(500, 'DB Chyba: ' . $e->getMessage());
+        }
+        return $this->redirect($this->url('forum.topic', ['id' => $post->getTopicId()]));
     }
 
     /**

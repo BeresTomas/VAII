@@ -136,6 +136,13 @@ $canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getNa
                                 <li><a href="<?= $actionUrl ?>">Nahlásiť</a></li>
                                 <?php if ($canManagePost) { ?>
                                     <li><a href="<?= $link->url('post.edit', ['id' => $post->getId()]) ?>">Upraviť</a></li>
+                                    <!-- Mazanie cez formular (POST), nie cez odkaz -->
+                                    <li>
+                                        <form method="post" action="<?= $link->url('post.delete') ?>">
+                                            <input type="hidden" name="id" value="<?= $post->getId() ?>">
+                                            <button type="submit">Zmazať</button>
+                                        </form>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </details>

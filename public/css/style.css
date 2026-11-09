@@ -871,7 +871,8 @@ a.btn:hover {
 }
 
 /* Kazda moznost je cely riadok s vyskou aspon 44 px (pohodlne kliknutie aj na mobile) */
-.post-menu-list a {
+.post-menu-list a,
+.post-menu-list button {
   display: flex;
   align-items: center;
   min-height: 44px;
@@ -879,9 +880,20 @@ a.btn:hover {
   color: #333;
 }
 
-.post-menu-list a:hover {
+.post-menu-list a:hover,
+.post-menu-list button:hover {
   background-color: #f1e9db;
   text-decoration: none;
+}
+
+/* Tlacidlo Zmazat (formular) vyzera ako ostatne polozky menu - bez okraja a pozadia, na celu sirku */
+.post-menu-list button {
+  width: 100%;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: pointer;
 }
 
 /* Formular na odpoved - popis, textove pole a tlacidlo pod sebou */
