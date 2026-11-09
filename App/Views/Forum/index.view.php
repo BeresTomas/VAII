@@ -91,9 +91,9 @@ $addUrl = $user->isLoggedIn() ? $link->url('topic.add') : App\Configuration::LOG
             </tr>
             </thead>
             <tbody>
-            <!-- Riadky tem sa nacitaju z DB. Vytvorene s pomocou AI (Claude).
-                 Odpovede a posledna odpoved su zatial staticke (tabulku posts este nemame). -->
+            <!-- Riadky tem sa nacitaju z DB. Vytvorene s pomocou AI (Claude). -->
             <?php foreach ($topics as $topic) { ?>
+                <?php $lastPost = $topic->getLastPost(); ?>
                 <tr>
                     <td class="author">
                         <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="32" height="32" class="avatar">
@@ -103,9 +103,17 @@ $addUrl = $user->isLoggedIn() ? $link->url('topic.add') : App\Configuration::LOG
                         <a href="<?= $link->url('forum.topic', ['id' => $topic->getId()]) ?>"><?= e($topic->getTitle()) ?></a>
                         <div class="muted">Pridané <?= date('j. n. Y', strtotime($topic->getCreatedAt())) ?></div>
                     </td>
-                    <td class="count"><span class="badge">0</span></td>
+                    <td class="count"><span class="badge"><?= $topic->getPostCount() ?></span></td>
                     <!-- Ziadna odpoved -> posledna odpoved sa nezobrazuje -->
-                    <td class="last-reply"></td>
+                    <td class="last-reply">
+                        <?php if ($lastPost != null) { ?>
+                            <a href="<?= $link->url('forum.topic', ['id' => $topic->getId()]) ?>#odpoved-<?= $lastPost->getId() ?>" class="last-reply-link">
+                                <img src="<?= $link->asset('images/logo.svg') ?>" alt="Avatar" width="24" height="24" class="avatar">
+                                <span>od <?= e($lastPost->getAuthor()) ?></span>
+                            </a>
+                            <div class="muted"><?= date('j. n. Y', strtotime($lastPost->getCreatedAt())) ?></div>
+                        <?php } ?>
+                    </td>
                 </tr>
             <?php } ?>
             </tbody>

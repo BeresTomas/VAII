@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Post;
 use App\Models\Topic;
 use Exception;
 use Framework\Core\BaseController;
@@ -51,6 +52,13 @@ class ForumController extends BaseController
         if (is_null($topic)) {
             throw new HttpException(404);
         }
-        return $this->html(compact('topic'));
+
+        // Odpovede patriace k tejto teme, najstarsie hore
+        try {
+            $posts = Post::getAll('`topic_id` = ?', [$topic->getId()], 'createdAt ASC');
+        } catch (Exception $e) {
+            throw new HttpException(500, "DB Chyba: " . $e->getMessage());
+        }
+        return $this->html(compact('topic', 'posts'));
     }
 }

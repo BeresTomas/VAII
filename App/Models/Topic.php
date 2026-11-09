@@ -80,4 +80,20 @@ class Topic extends Model
     {
         return Post::getCount('`topic_id` = ?', [$this->id]);
     }
+
+    /**
+     * Returns the newest post (reply) in this topic, or null if the topic has no posts yet.
+     *
+     * @return Post|null
+     * @throws \Exception
+     */
+    public function getLastPost(): ?Post
+    {
+        // Zoradene od najnovsej, limit 1 = len jedna odpoved
+        $posts = Post::getAll('`topic_id` = ?', [$this->id], 'createdAt DESC', 1);
+        if (count($posts) == 0) {
+            return null;
+        }
+        return $posts[0];
+    }
 }

@@ -3,6 +3,7 @@
 /** @var \Framework\Support\LinkGenerator $link */
 /** @var \Framework\Auth\AppUser $user */
 /** @var \App\Models\Topic $topic */
+/** @var \App\Models\Post[] $posts */
 
 // Neprihlaseneho posielaju tlacidla Odpovedat, Dakujem a Sledovat na Login
 $replyUrl = $user->isLoggedIn() ? '#odpoved' : App\Configuration::LOGIN_URL;
@@ -12,7 +13,7 @@ $actionUrl = $user->isLoggedIn() ? '#' : App\Configuration::LOGIN_URL;
 // Roly zatial nemame, admin je testovaci ucet s menom Admin.
 $canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getName() == $topic->getAuthor());
 ?>
-<!-- Detail temy - nazov, datum a text uvodneho prispevku su z DB, odpovede su zatial staticke.
+<!-- Detail temy - tema aj jej odpovede su z DB.
      Generovane s pomocou AI (Claude) a upravene. -->
 
 <!-- Omrvinkova navigacia -->
@@ -39,7 +40,7 @@ $canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getNa
     <div class="category-header topic-title">
         <!-- Moderator menu by bolo tu napravo, ale je skryte (role zatial nemame) -->
         <h1><?= e($topic->getTitle()) ?></h1>
-        <p class="category-meta">3 odpovede · 214 zobrazení</p>
+        <p class="category-meta">Odpovede: <?= count($posts) ?> · 214 zobrazení</p>
     </div>
 
     <div class="post">
@@ -48,8 +49,6 @@ $canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getNa
             <div>
                 <h2><a href="<?= $link->url('profile.index') ?>"><?= e($topic->getAuthor()) ?></a></h2>
                 <span class="badge">Autor témy</span>
-                <span class="badge">Moderátor</span>
-                <p class="muted">Skúsený včelár · 340 príspevkov</p>
             </div>
         </div>
         <div class="post-body">
@@ -60,9 +59,8 @@ $canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getNa
             <!-- nl2br zmeni konce riadkov z formulara na <br> -->
             <p><?= nl2br(e($topic->getText())) ?></p>
             <div class="post-foot">
-                <span class="muted">Ďakujú: Anka, Fero a 3 ďalší</span>
                 <div class="post-actions">
-                    <a href="<?= $actionUrl ?>" class="btn">Ďakujem (5)</a>
+                    <a href="<?= $actionUrl ?>" class="btn">Ďakujem</a>
                     <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
                     <!-- Menu ⋯ - details/summary sa otvori a zatvori klikom na ⋯.
                          Rovnake menu (bez Upravit a Zmazat) je aj pri odpovediach. Pridane s pomocou AI (Claude). -->
@@ -95,113 +93,50 @@ $canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getNa
         <button type="button" class="btn">Zoradiť podľa</button>
     </div>
 
-    <article class="post" id="prispevok-2">
-        <div class="post-author">
-            <img src="<?= $link->asset('images/logo.svg') ?>" alt="Profilová fotka – Fero" width="64" height="64" class="avatar">
-            <div>
-                <h2><a href="<?= $link->url('profile.index') ?>">Fero</a></h2>
-                <p class="muted">Začínajúci včelár · 28 príspevkov</p>
+    <!-- Odpovede z DB. Cislo #2, #3, ... je poradie odpovede v teme (#1 je uvodny prispevok). -->
+    <?php if (count($posts) == 0) { ?>
+        <div class="post">
+            <div class="post-body">
+                <p class="muted">Zatiaľ tu nie sú žiadne odpovede.</p>
             </div>
         </div>
-        <div class="post-body">
-            <div class="post-head">
-                <time datetime="2026-10-20T20:15">20. 10. 2026, 20:15</time>
-                <a href="#prispevok-2">#2</a>
-            </div>
-            <p>Ja soľ nedávam, kŕmim len čistým sirupom a včelám nič nechýba.</p>
-            <div class="post-foot">
-                <span class="muted">Ďakuje: Jožo</span>
-                <div class="post-actions">
-                    <a href="<?= $actionUrl ?>" class="btn">Ďakujem (1)</a>
-                    <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
-                    <details class="post-menu">
-                        <summary class="btn" aria-label="Ďalšie možnosti">⋯</summary>
-                        <ul class="post-menu-list">
-                            <li><a href="<?= $replyUrl ?>">Citovať</a></li>
-                            <li><a href="#prispevok-2">Odkaz na príspevok</a></li>
-                            <li><a href="<?= $actionUrl ?>">Nahlásiť</a></li>
-                        </ul>
-                    </details>
+    <?php } ?>
+    <?php $number = 1; ?>
+    <?php foreach ($posts as $post) { ?>
+        <?php $number++; ?>
+        <article class="post" id="odpoved-<?= $post->getId() ?>">
+            <div class="post-author">
+                <img src="<?= $link->asset('images/logo.svg') ?>" alt="Profilová fotka – <?= e($post->getAuthor()) ?>" width="64" height="64" class="avatar">
+                <div>
+                    <h2><a href="<?= $link->url('profile.index') ?>"><?= e($post->getAuthor()) ?></a></h2>
+                    <?php if ($post->getAuthor() == $topic->getAuthor()) { ?>
+                        <span class="badge">Autor témy</span>
+                    <?php } ?>
                 </div>
             </div>
-        </div>
-    </article>
-
-    <article class="post" id="prispevok-3">
-        <div class="post-author">
-            <img src="<?= $link->asset('images/logo.svg') ?>" alt="Profilová fotka – Jožo" width="64" height="64" class="avatar">
-            <div>
-                <h2><a href="<?= $link->url('profile.index') ?>">Jožo</a></h2>
-                <span class="badge">Autor témy</span>
-                <span class="badge">Moderátor</span>
-                <p class="muted">Skúsený včelár · 340 príspevkov</p>
-            </div>
-        </div>
-        <div class="post-body">
-            <div class="post-head">
-                <time datetime="2026-10-21T09:30">21. 10. 2026, 9:30</time>
-                <a href="#prispevok-3">#3</a>
-            </div>
-            <p>Dnes ráno som skúsil prvú várku, takto vyzerá kŕmidlo aj sirup.</p>
-            <!-- Prilozene fotky - zatial sive stvorce, rovnako ako na uvodnej stranke -->
-            <div class="gallery-mini">
-                <span class="photo"></span>
-                <span class="photo"></span>
-            </div>
-            <div class="post-foot">
-                <span class="muted">Ďakuje: Anka</span>
-                <div class="post-actions">
-                    <a href="<?= $actionUrl ?>" class="btn">Ďakujem (1)</a>
-                    <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
-                    <details class="post-menu">
-                        <summary class="btn" aria-label="Ďalšie možnosti">⋯</summary>
-                        <ul class="post-menu-list">
-                            <li><a href="<?= $replyUrl ?>">Citovať</a></li>
-                            <li><a href="#prispevok-3">Odkaz na príspevok</a></li>
-                            <li><a href="<?= $actionUrl ?>">Nahlásiť</a></li>
-                        </ul>
-                    </details>
+            <div class="post-body">
+                <div class="post-head">
+                    <time datetime="<?= date('Y-m-d\TH:i', strtotime($post->getCreatedAt())) ?>"><?= date('j. n. Y, G:i', strtotime($post->getCreatedAt())) ?></time>
+                    <a href="#odpoved-<?= $post->getId() ?>">#<?= $number ?></a>
+                </div>
+                <p><?= nl2br(e($post->getText())) ?></p>
+                <div class="post-foot">
+                    <div class="post-actions">
+                        <a href="<?= $actionUrl ?>" class="btn">Ďakujem</a>
+                        <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
+                        <details class="post-menu">
+                            <summary class="btn" aria-label="Ďalšie možnosti">⋯</summary>
+                            <ul class="post-menu-list">
+                                <li><a href="<?= $replyUrl ?>">Citovať</a></li>
+                                <li><a href="#odpoved-<?= $post->getId() ?>">Odkaz na príspevok</a></li>
+                                <li><a href="<?= $actionUrl ?>">Nahlásiť</a></li>
+                            </ul>
+                        </details>
+                    </div>
                 </div>
             </div>
-        </div>
-    </article>
-
-    <article class="post" id="prispevok-4">
-        <div class="post-author">
-            <!-- Anka nema profilovu fotku - namiesto nej je prve pismeno mena -->
-            <span class="avatar-letter">A</span>
-            <div>
-                <h2><a href="<?= $link->url('profile.index') ?>">Anka</a></h2>
-                <p class="muted">Včelárka · 112 príspevkov</p>
-            </div>
-        </div>
-        <div class="post-body">
-            <div class="post-head">
-                <time datetime="2026-10-21T17:05">21. 10. 2026, 17:05</time>
-                <a href="#prispevok-4">#4</a>
-            </div>
-            <blockquote class="post-quote">
-                <strong>Jožo napísal:</strong>
-                Koľko soli dávate na liter sirupu?
-            </blockquote>
-            <p>Ja dávam naozaj len štipku na päť litrov. Viac by som nedávala, včelám to škodí.</p>
-            <div class="post-foot">
-                <span class="muted">Ďakujú: Jožo, Fero</span>
-                <div class="post-actions">
-                    <a href="<?= $actionUrl ?>" class="btn">Ďakujem (2)</a>
-                    <a href="<?= $replyUrl ?>" class="btn">Odpovedať</a>
-                    <details class="post-menu">
-                        <summary class="btn" aria-label="Ďalšie možnosti">⋯</summary>
-                        <ul class="post-menu-list">
-                            <li><a href="<?= $replyUrl ?>">Citovať</a></li>
-                            <li><a href="#prispevok-4">Odkaz na príspevok</a></li>
-                            <li><a href="<?= $actionUrl ?>">Nahlásiť</a></li>
-                        </ul>
-                    </details>
-                </div>
-            </div>
-        </div>
-    </article>
+        </article>
+    <?php } ?>
 </div>
 
 <!-- Rovnake tlacidla aj pod zoznamom, aby sa po docitani nemuselo rolovat hore -->
@@ -211,7 +146,7 @@ $canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getNa
         <a href="<?= $actionUrl ?>" class="btn">Sledovať tému</a>
     </div>
     <div class="sort">
-        <span class="muted">Zobrazené príspevky 1–4 zo 4</span>
+        <span class="muted">Príspevkov v téme: <?= count($posts) + 1 ?></span>
         <nav class="pagination topic-pagination">
             <a href="#" class="active">1</a>
         </nav>

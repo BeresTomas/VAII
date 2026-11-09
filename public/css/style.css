@@ -818,11 +818,11 @@ a.btn:hover {
   font-weight: bold;
 }
 
-/* Paticka prispevku: kto dakuje vlavo, tlacidla vpravo.
+/* Paticka prispevku: tlacidla vpravo.
    margin-top: auto ju odtlaci na spodok prispevku, ciara ju oddeluje od textu. */
 .post-foot {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   flex-wrap: wrap;
   gap: 8px;
