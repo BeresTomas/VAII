@@ -891,6 +891,7 @@ a.btn:hover {
 }
 
 .reply-form input[type="text"],
+.reply-form select,
 .reply-form textarea {
   display: block;
   width: 100%;

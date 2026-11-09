@@ -153,14 +153,15 @@ $canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getNa
     </div>
 </div>
 
-<!-- Formular na odpoved vidia len prihlaseni. Zatial je len vizualny, odosielanie pribudne s databazou. -->
+<!-- Formular na odpoved vidia len prihlaseni. Skryte topic_id urci, ku ktorej teme odpoved patri. -->
 <?php if ($user->isLoggedIn()) { ?>
     <section class="card reply-form" id="odpoved">
         <h2>Napísať odpoveď</h2>
-        <form>
+        <form method="post" action="<?= $link->url('post.save') ?>">
+            <input type="hidden" name="topic_id" value="<?= $topic->getId() ?>">
             <label for="reply-text">Text odpovede</label>
-            <textarea id="reply-text" rows="5"></textarea>
-            <button type="button" class="btn btn-primary">Odoslať odpoveď</button>
+            <textarea id="reply-text" name="text" rows="5" required minlength="5" maxlength="5000"></textarea>
+            <button type="submit" class="btn btn-primary">Odoslať odpoveď</button>
         </form>
     </section>
 <?php } ?>
