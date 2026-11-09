@@ -69,4 +69,15 @@ class Topic extends Model
     {
         $this->author = $author;
     }
+
+    /**
+     * Returns the number of posts (replies) in this topic.
+     *
+     * @return int
+     * @throws \Exception
+     */
+    public function getPostCount(): int
+    {
+        return Post::getCount('`topic_id` = ?', [$this->id]);
+    }
 }
