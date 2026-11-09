@@ -912,6 +912,7 @@ a.btn:hover {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  background-color: #ffffff;
   font-family: inherit;
   font-size: 14px;
 }
