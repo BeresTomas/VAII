@@ -56,8 +56,8 @@ $canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getNa
                 <time datetime="<?= date('Y-m-d\TH:i', strtotime($topic->getCreatedAt())) ?>"><?= date('j. n. Y, G:i', strtotime($topic->getCreatedAt())) ?></time>
                 <a href="#prispevok-1">#1</a>
             </div>
-            <!-- nl2br zmeni konce riadkov z formulara na <br> -->
-            <p><?= nl2br(e($topic->getText())) ?></p>
+            <!-- nl2br zmeni konce riadkov z formulara na <br> (false = HTML5 tvar bez lomky) -->
+            <p><?= nl2br(e($topic->getText()), false) ?></p>
             <div class="post-foot">
                 <div class="post-actions">
                     <a href="<?= $actionUrl ?>" class="btn">Ďakujem</a>
@@ -119,7 +119,7 @@ $canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getNa
                     <time datetime="<?= date('Y-m-d\TH:i', strtotime($post->getCreatedAt())) ?>"><?= date('j. n. Y, G:i', strtotime($post->getCreatedAt())) ?></time>
                     <a href="#odpoved-<?= $post->getId() ?>">#<?= $number ?></a>
                 </div>
-                <p><?= nl2br(e($post->getText())) ?></p>
+                <p><?= nl2br(e($post->getText()), false) ?></p>
                 <div class="post-foot">
                     <div class="post-actions">
                         <a href="<?= $actionUrl ?>" class="btn">Ďakujem</a>
