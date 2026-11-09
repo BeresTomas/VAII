@@ -70,12 +70,15 @@ $canManage = $user->isLoggedIn() && ($user->getName() == 'Admin' || $user->getNa
                             <li><a href="<?= $replyUrl ?>">Citovať</a></li>
                             <li><a href="#prispevok-1">Odkaz na príspevok</a></li>
                             <li><a href="<?= $actionUrl ?>">Nahlásiť</a></li>
-                            <!-- Upravit a zmazat temu moze jej autor alebo admin.
-                                 confirm() sa pred zmazanim opyta, ci to pouzivatel naozaj chce - Zrusit odkaz zastavi. -->
+                            <!-- Upravit a zmazat temu moze jej autor alebo admin. Mazanie cez formular (POST). -->
                             <?php if ($canManage) { ?>
                                 <li><a href="<?= $link->url('topic.edit', ['id' => $topic->getId()]) ?>">Upraviť</a></li>
-                                <li><a href="<?= $link->url('topic.delete', ['id' => $topic->getId()]) ?>"
-                                       onclick="return confirm('Naozaj chcete zmazať túto tému?')">Zmazať</a></li>
+                                <li>
+                                    <form method="post" action="<?= $link->url('topic.delete') ?>">
+                                        <input type="hidden" name="id" value="<?= $topic->getId() ?>">
+                                        <button type="submit">Zmazať tému</button>
+                                    </form>
+                                </li>
                             <?php } ?>
                         </ul>
                     </details>

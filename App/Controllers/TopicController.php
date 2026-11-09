@@ -130,7 +130,8 @@ class TopicController extends BaseController
     }
 
     /**
-     * Deletes the topic and goes back to the forum page.
+     * Deletes the topic (only with POST) and goes back to the forum page.
+     * Its replies are deleted by the database (ON DELETE CASCADE).
      *
      * @param Request $request
      * @return Response
@@ -138,6 +139,10 @@ class TopicController extends BaseController
      */
     public function delete(Request $request): Response
     {
+        if (!$request->isPost()) {
+            throw new HttpException(405);
+        }
+
         $id = (int)$request->value('id');
         $topic = Topic::getOne($id);
 
